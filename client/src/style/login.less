@@ -3,16 +3,50 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    background: #f3f3f3;
+    background: url('./img/bg.jpg') no-repeat center center/cover;
     .login-form{
-        width: 320px;
+        width: 800px;
+        height: 520px;
         padding: 36px;
+        border-radius: 10px;
         box-shadow: 0 0 100px rgba(0, 0, 0, 0.08);
-        background: #fff;
-        .login-logo{
+        background: #34383c;
+
+      .ant-form{
+          margin: 90px auto auto;
+        .ant-form-item{
+          margin-bottom: 10px;
+        }
+          .ant-input{
+            height: 60px;
+            background: transparent;
+            border:none;
+            border-bottom: 1px solid #585d72;
+
+          }
+          input-placeholder{
+            color:#8b8e9c
+          }
+          .ant-btn-primary{
+            background: #21c393;
+            border-color: #21c393;
+          }
+          .login-form-forgot{
+            color:#8b8e9c;
+            text-decoration: underline;
+          }
+          .ant-btn-primary{
+            float: left;
+            margin: 57px 0px 0 75px;
+            height: 53px;
+            font-size: 22px;
+          }
+
+      }
+      .login-logo{
             width: 100%;
             height: 40px;
-            background: url('./img/sun.png') no-repeat 60px center/15%;
+
             margin-bottom:20px;
             .login-name{
                 line-height: 40px;
@@ -28,6 +62,10 @@
             height: 25px;
             background: url('./img/github.png') no-repeat center center/cover;
         }
+    }
+    .login-name img{
+      width: 206px;
+      margin-top: 25px;
     }
 }
 
