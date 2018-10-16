@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Layout, Icon, Menu, Badge } from 'antd';
+import { Layout, Icon, Menu, Badge ,Input,Button} from 'antd';
 import { Link } from 'react-router-dom';
 import history from './history';
-
+import LogoImg from '../../style/img/logo.jpg';
+import Head1Img from '../../style/img/head1.jpg';
+import Head2Img from '../../style/img/head2.png';
 const { Header } = Layout;
 const SubMenu = Menu.SubMenu;
 
@@ -29,32 +31,27 @@ export default class HeaderCustom extends Component{
     }
     render(){
         return(
-            <Header style={{ background: '#fff', padding: 0 }} className="header">
-                <Icon
-                className="trigger"
-                type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                onClick={this.props.toggle}
-                />
+            <Header style={{ background: '#33383c', padding: 0 }} className="header">
+                <img class="logo" src = {LogoImg}/>
+                <img class="head1" src = {Head1Img}/>
+
                 <Menu
                     mode="horizontal"
                     style={{ lineHeight: '64px', float: 'right' }}
                 >
-                    <Menu.Item key="schedule">
-                        <Link to="/app/header/Calendars">
-                            <Badge count={3} overflowCount={99} style={{height:'15px',lineHeight:'15px'}}>
-                                <Icon type="schedule" style={{fontSize:16, color: '#1DA57A' }}/>
-                            </Badge>
-                        </Link>
+                    <Menu.Item>
+                    <Input placeholder ="请请输入要搜索的内容..." class="head_input" />
                     </Menu.Item>
-                    <SubMenu 
-                        title={<span>
-                            <Icon type="user" style={{fontSize:16, color: '#1DA57A' }}/>{this.props.username}
-                        </span>}
-                        >
-                        <Menu.Item key="logout" style={{textAlign:'center'}} className="logout">
-                            <span onClick={this.logout}>logout</span>
-                        </Menu.Item>
-                    </SubMenu>
+                    <Menu.Item>
+                     <Button type="primary" icon="search" >搜索</Button>
+                    </Menu.Item>
+                    <Menu.Item>
+                        <div>
+                            <img class="head2" src = {Head2Img}/>
+                            <a class="logout" onClick={this.logout}/>
+                        </div>
+                    </Menu.Item>
+
                 </Menu>
             </Header>
         )

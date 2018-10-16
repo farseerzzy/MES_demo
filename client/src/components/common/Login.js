@@ -41,7 +41,7 @@ class NormalLoginForm extends Component {
                     let that = this;
                     setTimeout(function() { //延迟进入
                         that.props.history.push({pathname:'/app',state:values});
-                    }, 1000);
+                    }, 500);
 
                 }else{
                     message.error('登陆失败!'); //失败信息

@@ -45,10 +45,11 @@ export default class App extends Component {
         }
 
         return (
-            <Layout className="ant-layout-has-sider" style={{height: '100%'}}>
-                <SiderCustom collapsed={collapsed} path={location.pathname}/>
+            <Layout className="ant-layout" style={{height: '100%'}}>
+                 <HeaderCustom collapsed={collapsed} toggle={this.toggle} username={name}/>
+                
                 <Layout>
-                    <HeaderCustom collapsed={collapsed} toggle={this.toggle} username={name}/>
+                   <SiderCustom collapsed={collapsed} path={location.pathname}/>
                     <Content style={{margin: '0 16px'}}>
                         <Switch>
                             <Route exact path={'/app'} component={MIndex} />
@@ -60,9 +61,7 @@ export default class App extends Component {
                             <Route component={noMatch} />
                         </Switch>
                     </Content>
-                    <Footer style={{textAlign: 'center'}}>
-                        MSPA ©2017-2018 Created by zysoft
-                    </Footer>
+
                 </Layout>
             </Layout>
         );
