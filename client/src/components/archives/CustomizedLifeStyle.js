@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Modal, Form,Row,Col, Input, Radio, InputNumber, Cascader, Select, AutoComplete } from 'antd';
+import { Modal, Form,Row,Col, Checkbox,Input, Radio, InputNumber, Cascader, Select, AutoComplete } from 'antd';
 import axios from 'axios';
 import address from './request/address';
+
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -59,9 +60,7 @@ class CustomizedForm extends Component{
             wrapperCol: { span: 16 },
         };
         const radioStyle = {
-            display: 'block',
-            height: '30px',
-            lineHeight: '30px',
+
         };
         const layoutc = {span: 6, offset: 20}
         const websiteOptions = autoCompleteResult.map(website => (
@@ -78,64 +77,68 @@ class CustomizedForm extends Component{
             >
                 <Form layout="horizontal">
 
-                    <Row gutter={8}>
-                        <Col span={8}>
-                            <FormItem label="体温" {...FormItemLayout} hasFeedback>
+                    <div class="cateTitle">体育锻炼</div>
+                    <FormItem  {...FormItemLayout} hasFeedback>
+                        <div>锻炼频率</div>
+                        {getFieldDecorator('symptom', {
+
+                        })(
+
+                            <Radio.Group defaultValue="0" buttonStyle="solid">
+                                <Radio.Button style={radioStyle} value="0">每天</Radio.Button>
+                                <Radio.Button style={radioStyle} value="1">每周一次以上</Radio.Button>
+                                <Radio.Button style={radioStyle} value="2">偶尔</Radio.Button>
+                                <Radio.Button style={radioStyle} value="3">不锻炼</Radio.Button>
+
+                            </Radio.Group>
+                        )}
+                    </FormItem>
+                    <Row gutter={0}>
+                        <Col span={12}>
+                            <FormItem label="每次锻炼时间" {...FormItemLayout} hasFeedback>
                                 {getFieldDecorator('id', {
                                     rules: [{ required: true, message: '请输入姓名！' }],
                                 })(
-                                    <Input addonAfter="℃" />
+                                    <Input addonAfter="分钟" />
                                 )}
                             </FormItem>
                         </Col>
-                        <Col span={8}>
-                            <FormItem label="脉搏" {...FormItemLayout} hasFeedback>
+                        <Col span={12}>
+                            <FormItem label="坚持锻炼时间" {...FormItemLayout} hasFeedback>
                                 {getFieldDecorator('sex', {
                                     
                                 })(
-                                    <Input addonAfter="次/分钟" />
+                                    <Input addonAfter="年" />
                                 )}
                             </FormItem>
                         </Col>
-                        <Col span={8}>
-                            <FormItem label="呼吸频率" {...FormItemLayout} hasFeedback>
+                        <Col span={12}>
+                            <FormItem label="锻炼方式" {...FormItemLayout} hasFeedback>
                                 {getFieldDecorator('age', {
                                    
                                 })(
-                                    <Input addonAfter="次/分钟" />
+                                    <Input  />
                                 )}
                             </FormItem>
                         </Col>
                     </Row>
-                    <Row gutter={8}>
-                        <Col span={8}>
-                            <FormItem label="血压" {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('symptom', {
-                                    
-                                })(
-                                    <Input addonAfter="mmHg" />
-                                )}
-                            </FormItem>
-                        </Col>
-                        <Col span={8}>
-                            <FormItem label="身高" {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('phone', {
-                                    
-                                })(
-                                    <Input   addonAfter="CM"/>
-                                )}
-                            </FormItem>
-                        </Col>
-                        <Col span={8}>
-                            <FormItem label="体重" {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('IdCardNo', {
 
-                                })(
-                                    <Input addonAfter="kg" />
-                                )}
-                            </FormItem>
-                        </Col>
-                    </Row>
+                    <div className="cateTitle">饮食习惯</div>
+
+                    <Checkbox.Group style={{ width: '100%' }}>
+                        <Row>
+                            <Col span={4}><Checkbox value="A">荤素均衡</Checkbox></Col>
+                            <Col span={4}><Checkbox value="B">荤食为主</Checkbox></Col>
+                            <Col span={4}><Checkbox value="C">素食为主</Checkbox></Col>
+                            <Col span={4}><Checkbox value="D">嗜盐</Checkbox></Col>
+                            <Col span={4}><Checkbox value="E">嗜油</Checkbox></Col>
+                            <Col span={4}><Checkbox value="E">嗜糖</Checkbox></Col>
+                        </Row>
+                    </Checkbox.Group>
+
+
+
+
                     <Row gutter={8}>
                         <Col span={8}>
                             <FormItem label="腰围" {...FormItemLayout} hasFeedback>

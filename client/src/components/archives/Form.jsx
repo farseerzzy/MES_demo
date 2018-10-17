@@ -9,7 +9,7 @@ import { Row, Col, Input, Icon, Cascader, DatePicker, Button, Tooltip, Popconfir
 import BreadcrumbCustom from '../common/BreadcrumbCustom';
 import address from './request/address.json';
 import data from './request/data.json';
-import CollectionCreateForm from './CustomizedHealth';
+import CollectionCreateForm from './CustomizedLifeStyle';
 import FormTable from './FormTable';
 import Server from '../../helpers/Server'
 

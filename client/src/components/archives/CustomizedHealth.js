@@ -58,6 +58,12 @@ class CustomizedForm extends Component{
             labelCol: { span: 5 },
             wrapperCol: { span: 16 },
         };
+        const radioStyle = {
+            display: 'block',
+            height: '30px',
+            lineHeight: '30px',
+        };
+        const layoutc = {span: 6, offset: 20}
         const websiteOptions = autoCompleteResult.map(website => (
             <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
         ));
@@ -68,7 +74,7 @@ class CustomizedForm extends Component{
                 okText={okText}
                 onCancel={onCancel}
                 onOk={onCreate}
-                width = {1000}
+                width = {1200}
             >
                 <Form layout="horizontal">
 
@@ -155,36 +161,78 @@ class CustomizedForm extends Component{
 
 
                     <Row gutter={8}>
-                        <Col span={8}>
-                            <FormItem label="老年人健康状态自我评估*" {...FormItemLayout} hasFeedback>
+                        <Col span={6}>
+                            <FormItem  {...FormItemLayout} hasFeedback>
+                                <div>老年人健康状态自我评估*</div>
                                 {getFieldDecorator('symptom', {
                                     
                                 })(
+
                                     <Radio.Group defaultValue="0" buttonStyle="solid">
-                                        <Radio.Button value="1">满意</Radio.Button>
-                                        <Radio.Button value="2">基本满意</Radio.Button>
-                                        <Radio.Button value="3">说不清楚</Radio.Button>
-                                        <Radio.Button value="4">不太满意</Radio.Button>
-                                        <Radio.Button value="5">不满意</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="0">满意</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="1">基本满意</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="2">说不清楚</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="3">不太满意</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="4">不满意</Radio.Button>
                                       </Radio.Group>
                                 )}
                             </FormItem>
                         </Col>
-                        <Col span={8}>
-                            <FormItem label="老年人生活自理能力自我评估*" {...FormItemLayout} hasFeedback>
+                        <Col span={6}>
+                            <FormItem  {...FormItemLayout} hasFeedback>
+                                <div>老年人生活自理能力自我评估*</div>
                                 {getFieldDecorator('phone', {
                                     
                                 })(
-                                    <Input   addonAfter="CM"/>
+                                    <Radio.Group defaultValue="0" buttonStyle="solid">
+                                        <Radio.Button style={radioStyle} value="0">可自理（0～3分）</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="1">轻度依赖（4～8分</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="2">中度依赖（9～18分)</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="3">不能自理（≥19分）</Radio.Button>
+
+                                    </Radio.Group>
                                 )}
                             </FormItem>
                         </Col>
-                        <Col span={8}>
-                            <FormItem label="老年人认知功能*" {...FormItemLayout} hasFeedback>
+                        <Col span={6}>
+                            <FormItem  {...FormItemLayout} hasFeedback>
+                                <div>老年人认知功能*</div>
                                 {getFieldDecorator('IdCardNo', {
 
                                 })(
-                                    <Input addonAfter="kg" />
+                                    <Radio.Group defaultValue="0" buttonStyle="solid">
+                                        <Radio.Button style={radioStyle} value="1">粗筛阴性</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="2">粗筛阳性</Radio.Button>
+
+                                    </Radio.Group>
+                                )}
+                            </FormItem>
+                            <FormItem  {...FormItemLayout} hasFeedback>
+                                {getFieldDecorator('IdCardNo', {
+
+                                })(
+                                    <Input addonBefore={'总分'}  />
+                                )}
+                            </FormItem>
+                        </Col>
+                        <Col span={6}>
+                            <FormItem  {...FormItemLayout} hasFeedback>
+                                <div>老年人情感状态*</div>
+                                {getFieldDecorator('IdCardNo', {
+
+                                })(
+                                    <Radio.Group defaultValue="0" buttonStyle="solid">
+                                        <Radio.Button style={radioStyle} value="1">粗筛阴性</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="2">粗筛阳性</Radio.Button>
+
+                                    </Radio.Group>
+                                )}
+                            </FormItem>
+                            <FormItem  {...FormItemLayout} hasFeedback>
+                                {getFieldDecorator('IdCardNo', {
+
+                                })(
+                                    <Input size={'small'} addonBefore={'总分'}  />
                                 )}
                             </FormItem>
                         </Col>
