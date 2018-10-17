@@ -9,8 +9,11 @@ import { Row, Col, Input, Icon, Cascader, DatePicker, Button, Tooltip, Popconfir
 import BreadcrumbCustom from '../common/BreadcrumbCustom';
 import address from './request/address.json';
 import data from './request/data.json';
-import CollectionCreateForm from './CustomizedForm';
+import CollectionCreateForm from './CustomizedHealth';
 import FormTable from './FormTable';
+import Server from '../../helpers/Server'
+
+
 
 const Search = Input.Search;
 const InputGroup = Input.Group;
@@ -61,22 +64,43 @@ export default class UForm extends Component{
             tableRowKey: 0,
             isUpdate: false,
             loading: true,
+            userList:[],
         };
     }
     //getData
     getData = () => {
+        let self = this;
         axios.get('/data')
             .then(function (response) {
                 // console.log(response.data);
                 this.setState({
                     dataSource: response.data,
-                    loading:false
+                    //loading:false
                 })
             }.bind(this))
             .catch(function (error) {
                 console.log(error);
             })
+
+
+        Server.getUserList(function (res) {
+            console.log(res)
+            var dataObj = res.data;
+
+            self.setState({
+                userList: dataObj,
+                loading:false
+            })
+
+        })
     };
+    componentWillMount(){
+        let self = this;
+        console.log('初始化数据');
+        
+
+    };
+
     //用户名输入
     onChangeUserName = (e) => {
         const value = e.target.value;
@@ -155,6 +179,7 @@ export default class UForm extends Component{
                 console.log(error);
             });
         this.getData();
+
     }
     //搜索按钮
     btnSearch_Click = () => {
@@ -225,17 +250,17 @@ export default class UForm extends Component{
     //点击修改
     editClick = (key) => {
         const form = this.form;
-        const { dataSource } = this.state;
-        const index = catchIndex(dataSource, key);
+        const { userList } = this.state;
+        const index = catchIndex(userList, key);
         form.setFieldsValue({
             key: key,
-            name: dataSource[index].name,
-            sex: dataSource[index].sex,
-            age: dataSource[index].age,
-            address: dataSource[index].address.split(' / '),
-            phone: dataSource[index].phone,
-            email: dataSource[index].email,
-            website: dataSource[index].website,
+            name: userList[index].id,
+            sex: userList[index].sex,
+            age: userList[index].age,
+            symptom: userList[index].symptom,
+            phone: userList[index].phone,
+            IdCardNo: userList[index].IdCardNo,
+           
         });
         this.setState({
             visible: true,
@@ -269,7 +294,7 @@ export default class UForm extends Component{
         this.setState({selectedRowKeys: selectedRowKeys});
     };
     render(){
-        const { userName, address, timeRange, dataSource, visible, isUpdate, loading } = this.state;
+        const { userName, address, timeRange, dataSource, visible, isUpdate, loading ,userList} = this.state;
         const questiontxt = ()=>{
             return (
                 <p>
@@ -280,7 +305,7 @@ export default class UForm extends Component{
         };
         return(
             <div>
-                <BreadcrumbCustom paths={['首页','表单']}/>
+                <BreadcrumbCustom paths={['首页','健康档案']}/>
                 <div className='formBody'>
                     <Row gutter={16}>
                         <Col className="gutter-row" sm={8}>
@@ -302,26 +327,16 @@ export default class UForm extends Component{
                         </Col>
                     </Row>
                     <Row gutter={16}>
-                        <div className='plus' onClick={this.CreateItem}>
-                            <Icon type="plus-circle" />
-                        </div>
-                        <div className='minus'>
-                            <Popconfirm title="确定要批量删除吗?" onConfirm={this.MinusClick}>
-                                <Icon type="minus-circle" />
-                            </Popconfirm>
-                        </div>
-                        <div className='question'>
-                            <Tooltip placement="right" title={questiontxt}>
-                                <Icon type="question-circle" />
-                            </Tooltip>
-                        </div>
+
                         <div className='btnOpera'>
+
                             <Button type="primary" onClick={this.btnSearch_Click} style={{marginRight:'10px'}}>查询</Button>
                             <Button type="primary" onClick={this.btnClear_Click} style={{background:'#f8f8f8', color: '#108ee9'}}>重置</Button>
                         </div>
+                        
                     </Row>
                     <FormTable
-                        dataSource={dataSource}
+                        userList={userList}
                         checkChange={this.checkChange}
                         onDelete={this.onDelete}
                         editClick={this.editClick}

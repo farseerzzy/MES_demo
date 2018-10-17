@@ -8,7 +8,7 @@ import HeaderCustom from './HeaderCustom';
 import MIndex from '../index/Index';
 import Calendars from '../header/Calendars';
 import Echarts from '../chart/echarts/Echarts';
-import UForm from '../form/Form';
+import UForm from '../archives/Form';
 import noMatch from './404';
 import RichText from "../richText/RichText";
 import UploadEditor from "../upload/UploadEditor";
@@ -53,9 +53,9 @@ export default class App extends Component {
                     <Content style={{margin: '0 16px'}}>
                         <Switch>
                             <Route exact path={'/app'} component={MIndex} />
-                            <Route exact path={'/app/form'} component={UForm} />
+                            <Route exact path={'/app/archives'} component={UForm} />
                             <Route exact path={'/app/header/Calendars'} component={Calendars} />
-                            <Route exact path={'/app/chart/echarts'} component={Echarts} />
+                            <Route exact path={'/app/povertyAlleviation/echarts'} component={Echarts} />
                             <Route exact path={'/app/richText'} component={RichText} />
                             <Route exact path={'/app/upload'} component={UploadEditor} />
                             <Route component={noMatch} />

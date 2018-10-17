@@ -76,43 +76,43 @@ export default class SiderCustom extends Component{
                     <Menu.Item key={"/app"}>
                         <Link to={"/app"}><Icon type="home" /><span>首页</span><div></div></Link>
                     </Menu.Item>
-                    <Menu.Item key={"/app/form"}>
-                        <Link to={"/app/form"}><Icon type="lock" /><span>公共卫生</span></Link>
+                    <Menu.Item key={"/app/publicHealth"}>
+                        <Link to={"/app/publicHealth"}><Icon type="lock" /><span>公共卫生</span></Link>
                     </Menu.Item>
-                    <Menu.Item key={"/app/form"}>
-                        <Link to={"/app/form"}><Icon type="folder" /><span>健康档案</span></Link>
+                    <Menu.Item key={"/app/archives"}>
+                        <Link to={"/app/archives"}><Icon type="folder" /><span>健康档案</span></Link>
                     </Menu.Item>
                     <SubMenu
-                    key="/app/chart"
+                    key="/app/povertyAlleviation"
                     title={<span><Icon type="folder" /><span>健康扶贫</span></span>}
                     >
-                        <Menu.Item key="/app/chart/echarts1">
-                            <Link to={'/app/chart/echarts'}><span>问题整改</span></Link>
+                        <Menu.Item key="/app/povertyAlleviation/problem">
+                            <Link to={'/app/povertyAlleviation/problem'}><span>问题整改</span></Link>
                         </Menu.Item>
-                        <Menu.Item key="/app/chart/echarts2">
-                            <Link to={'/app/chart/echarts'}><span>专家绩效</span></Link>
+                        <Menu.Item key="/app/povertyAlleviation/expert">
+                            <Link to={'/app/povertyAlleviation/expert'}><span>专家绩效</span></Link>
                         </Menu.Item>
-                        <Menu.Item key="/app/chart/echarts3">
-                            <Link to={'/app/chart/echarts'}><span>疾病分析</span></Link>
+                        <Menu.Item key="/app/povertyAlleviation/analysis">
+                            <Link to={'/app/povertyAlleviation/analysis'}><span>疾病分析</span></Link>
                         </Menu.Item>
-                        <Menu.Item key="/app/chart/echarts4">
-                            <Link to={'/app/chart/echarts'}><span>费用总览</span></Link>
+                        <Menu.Item key="/app/povertyAlleviation/tFee">
+                            <Link to={'/app/povertyAlleviation/tFee'}><span>费用总览</span></Link>
                         </Menu.Item>
-                        <Menu.Item key="/app/chart/echarts">
-                            <Link to={'/app/chart/echarts'}><span>费用分析</span></Link>
+                        <Menu.Item key="/app/povertyAlleviation/anaFee">
+                            <Link to={'/app/povertyAlleviation/anaFee'}><span>费用分析</span></Link>
                         </Menu.Item>
                     </SubMenu>
-                    <Menu.Item key="/app/richText">
-                        <Link to={'/app/richText'}><Icon type="setting" /><span>基础医疗</span></Link>
+                    <Menu.Item key="/app/basicMed">
+                        <Link to={'/app/basicMed'}><Icon type="setting" /><span>基础医疗</span></Link>
                     </Menu.Item>
-                    <Menu.Item key="/app/upload">
-                        <Link to={'/app/upload'}><Icon type="folder" /><span>医联体</span></Link>
+                    <Menu.Item key="/app/linkMed">
+                        <Link to={'/app/linkMed'}><Icon type="folder" /><span>医联体</span></Link>
                     </Menu.Item>
-                    <Menu.Item key="/app/upload">
-                        <Link to={'/app/upload'}><Icon type="setting" /><span>远程医疗</span></Link>
+                    <Menu.Item key="/app/remoteMed">
+                        <Link to={'/app/remoteMed'}><Icon type="setting" /><span>远程医疗</span></Link>
                     </Menu.Item>
-                    <Menu.Item key="/app/upload">
-                        <Link to={'/app/upload'}><Icon type="lock" /><span>其他接口</span></Link>
+                    <Menu.Item key="/app/otherApi">
+                        <Link to={'/app/otherApi'}><Icon type="lock" /><span>其他接口</span></Link>
                     </Menu.Item>
                 </Menu>
             </Sider>

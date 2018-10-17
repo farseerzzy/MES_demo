@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Form, Input, Radio, InputNumber, Cascader, Select, AutoComplete } from 'antd';
+import { Modal, Form, Row,Col,Input, Radio, InputNumber, Cascader, Select, AutoComplete } from 'antd';
 import axios from 'axios';
 import address from './request/address';
 
@@ -69,14 +69,18 @@ class CustomizedForm extends Component{
                 onCancel={onCancel}
                 onOk={onCreate}
             >
-                <Form layout="horizontal">
+                <Form layout="vertical">
+                    <Row gutter={16}>
+                    <Col span={12} >
                     <FormItem label="姓名" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('name', {
+                        {getFieldDecorator('id', {
                             rules: [{ required: true, message: '请输入姓名！' }],
                         })(
                             <Input />
                         )}
                     </FormItem>
+                    </Col>
+                    <Col span={12} >
                     <FormItem label="性别" {...FormItemLayout} hasFeedback>
                         {getFieldDecorator('sex', {
                             rules: [{ required: true, message: '请选择性别！' }],
@@ -87,6 +91,8 @@ class CustomizedForm extends Component{
                             </Radio.Group>
                         )}
                     </FormItem>
+                    </Col>
+                    </Row>
                     <FormItem label="年龄" {...FormItemLayout} hasFeedback>
                         {getFieldDecorator('age', {
                             rules: [{ required: true, message: '请输入年龄！' }],
@@ -94,11 +100,11 @@ class CustomizedForm extends Component{
                             <InputNumber min={0} max={199} step={1} />
                         )}
                     </FormItem>
-                    <FormItem label="地址" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('address', {
-                            rules: [{ required: true, message: '请选择地址！' }],
+                    <FormItem label="症状" {...FormItemLayout} hasFeedback>
+                        {getFieldDecorator('symptom', {
+                            rules: [{ required: true, message: '请输入症状！' }],
                         })(
-                            <Cascader options={options}/>
+                            <Input />
                         )}
                     </FormItem>
                     <FormItem label="手机号" {...FormItemLayout} hasFeedback>
@@ -112,29 +118,14 @@ class CustomizedForm extends Component{
                             <Input addonBefore={"+86"} style={{ width: '100%' }} />
                         )}
                     </FormItem>
-                    <FormItem label="邮箱" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('email', {
-                            rules: [{
-                                type: 'email', message: '邮箱格式不正确！',
-                            }, {
-                                required: true, message: '请输入邮箱！',
-                            }],
+                    <FormItem label="身份证号" {...FormItemLayout} hasFeedback>
+                        {getFieldDecorator('IdCardNo', {
+
                         })(
                             <Input />
                         )}
                     </FormItem>
-                    <FormItem label="网址" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('website', {
-                            rules: [{required: true, message: '请输入网址！'}],
-                        })(
-                            <AutoComplete
-                                dataSource={websiteOptions}
-                                onChange={this.handleWebsiteChange}
-                            >
-                                <Input/>
-                            </AutoComplete>
-                        )}
-                    </FormItem>
+                    
                 </Form>
             </Modal>
         );

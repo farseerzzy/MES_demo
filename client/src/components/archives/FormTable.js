@@ -7,7 +7,7 @@ export default class FormTable extends Component{
         super(props);
     }
     render(){
-        const { checkChange, onDelete, editClick, dataSource, loading } = this.props;
+        const { checkChange, onDelete, editClick, dataSource, loading, userList } = this.props;
         const rowSelection = {
                 onChange: checkChange,
                 getCheckboxProps: record => ({
@@ -16,7 +16,7 @@ export default class FormTable extends Component{
         };
         const columns = [{
             title: '姓名',
-            dataIndex: 'name',
+            dataIndex: 'id',
             width: 80,
         }, {
             title: '性别',
@@ -33,24 +33,20 @@ export default class FormTable extends Component{
             sorter: (a, b) => a.age - b.age,
             width: 80,
         },{
-            title: '地址',
-            dataIndex: 'address',
+            title: '症状',
+            dataIndex: 'symptom',
             width: 180,
         },{
             title: '手机号',
             dataIndex: 'phone',
             width: 120,
         },{
-            title: '邮箱',
-            dataIndex: 'email',
+            title: '身份证号',
+            dataIndex: 'IdCardNo',
             width:140,
         },{
-            title: '网址',
-            dataIndex: 'website',
-            width:120,
-        },{
             title: '创建时间',
-            dataIndex: 'createtime',
+            dataIndex: 'createdAt',
             sorter: (a, b) => moment(a.createtime) - moment(b.createtime),
             width:150,
         },{
@@ -59,17 +55,17 @@ export default class FormTable extends Component{
             width:100,
             render: (text, record) =>
                 <div className='opera'>
-                    <span onClick={() => editClick(record.key)}>
+                    <span onClick={() => editClick(record.id)}>
                          <Icon type="edit" /> 修改
                     </span><br />
-                    <span><Popconfirm title="确定要删除吗?" onConfirm={() => onDelete(record.key)}><Icon type="minus-square-o" /> 删除 </Popconfirm></span>
+                    
                 </div>
         }];
         return(
             <Table
                 rowSelection={rowSelection}
                 columns={columns}
-                dataSource={dataSource}
+                dataSource={userList}
                 bordered={true}
                 scroll={{x:'100%'}}
                 className='formTable'
