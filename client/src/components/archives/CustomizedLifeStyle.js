@@ -9,12 +9,15 @@ const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
 const options = [];
 
-class CustomizedForm extends Component{
+class CustomizedLifeStyle extends Component{
     state = {
         autoCompleteResult: [],
     };
     constructor(props){
         super(props);
+    }
+    showConsole = () =>{
+        console.log('asdadasdadasdasda')
     }
     componentDidMount(){
         axios.get('/address')
@@ -56,8 +59,16 @@ class CustomizedForm extends Component{
         const { getFieldDecorator } = form;
         const { autoCompleteResult } = this.state;
         const FormItemLayout = {
-            labelCol: { span: 5 },
-            wrapperCol: { span: 16 },
+            labelCol: { span: 10 },
+            wrapperCol: { span: 6 },
+        };
+        const FormItemLayout7 = {
+            labelCol: { span: 7 },
+            wrapperCol: { span: 6 },
+        };
+        const FormItemLayoutW = {
+            labelCol: { span: 10 },
+            wrapperCol: { span: 10 },
         };
         const radioStyle = {
 
@@ -67,19 +78,12 @@ class CustomizedForm extends Component{
             <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
         ));
         return (
-            <Modal
-                visible={visible}
-                title={title}
-                okText={okText}
-                onCancel={onCancel}
-                onOk={onCreate}
-                width = {1200}
-            >
+
                 <Form layout="horizontal">
 
                     <div class="cateTitle">体育锻炼</div>
-                    <FormItem  {...FormItemLayout} hasFeedback>
-                        <div>锻炼频率</div>
+                    <FormItem  {...FormItemLayoutW} hasFeedback>
+                        <span>锻炼频率： </span>
                         {getFieldDecorator('symptom', {
 
                         })(
@@ -94,8 +98,8 @@ class CustomizedForm extends Component{
                         )}
                     </FormItem>
                     <Row gutter={0}>
-                        <Col span={12}>
-                            <FormItem label="每次锻炼时间" {...FormItemLayout} hasFeedback>
+                        <Col span={8}>
+                            <FormItem label="每次锻炼时间" {...FormItemLayout7} hasFeedback>
                                 {getFieldDecorator('id', {
                                     rules: [{ required: true, message: '请输入姓名！' }],
                                 })(
@@ -103,7 +107,7 @@ class CustomizedForm extends Component{
                                 )}
                             </FormItem>
                         </Col>
-                        <Col span={12}>
+                        <Col span={8}>
                             <FormItem label="坚持锻炼时间" {...FormItemLayout} hasFeedback>
                                 {getFieldDecorator('sex', {
                                     
@@ -112,7 +116,7 @@ class CustomizedForm extends Component{
                                 )}
                             </FormItem>
                         </Col>
-                        <Col span={12}>
+                        <Col span={8}>
                             <FormItem label="锻炼方式" {...FormItemLayout} hasFeedback>
                                 {getFieldDecorator('age', {
                                    
@@ -135,120 +139,149 @@ class CustomizedForm extends Component{
                             <Col span={4}><Checkbox value="E">嗜糖</Checkbox></Col>
                         </Row>
                     </Checkbox.Group>
-
-
-
-
+                    <div className="cateTitle">吸烟状况</div>
                     <Row gutter={8}>
-                        <Col span={8}>
-                            <FormItem label="腰围" {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('symptom', {
-                                    
-                                })(
-                                    <Input addonAfter="CM" />
-                                )}
-                            </FormItem>
-                        </Col>
-                        <Col span={8}>
-                            <FormItem label="体质指数" {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('phone', {
-                                    
-                                })(
-                                    <Input   addonAfter="Kg/m2"/>
-                                )}
-                            </FormItem>
-                        </Col>
+                    <Col span={8}>
+                        <FormItem   hasFeedback>
 
-                    </Row>
+                            {getFieldDecorator('symptom', {
 
-
-
-                    <Row gutter={8}>
-                        <Col span={6}>
-                            <FormItem  {...FormItemLayout} hasFeedback>
-                                <div>老年人健康状态自我评估*</div>
-                                {getFieldDecorator('symptom', {
-                                    
-                                })(
-
-                                    <Radio.Group defaultValue="0" buttonStyle="solid">
-                                        <Radio.Button style={radioStyle} value="0">满意</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="1">基本满意</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="2">说不清楚</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="3">不太满意</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="4">不满意</Radio.Button>
-                                      </Radio.Group>
-                                )}
-                            </FormItem>
+                            })(
+                            
+                                <Radio.Group defaultValue="0" buttonStyle="solid">
+                                    <Radio.Button style={radioStyle} value="1">从不吸烟</Radio.Button>
+                                    <Radio.Button style={radioStyle} value="2">已戒烟</Radio.Button>
+                                    <Radio.Button style={radioStyle} value="3">吸烟</Radio.Button>
+                                </Radio.Group>
+                            )}
+                        </FormItem>
                         </Col>
                         <Col span={6}>
-                            <FormItem  {...FormItemLayout} hasFeedback>
-                                <div>老年人生活自理能力自我评估*</div>
-                                {getFieldDecorator('phone', {
-                                    
-                                })(
-                                    <Radio.Group defaultValue="0" buttonStyle="solid">
-                                        <Radio.Button style={radioStyle} value="0">可自理（0～3分）</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="1">轻度依赖（4～8分</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="2">中度依赖（9～18分)</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="3">不能自理（≥19分）</Radio.Button>
-
-                                    </Radio.Group>
-                                )}
-                            </FormItem>
+                                <FormItem label="日吸烟量" {...FormItemLayout} hasFeedback>
+                                    {getFieldDecorator('id', {
+                                        rules: [{ required: true, message: '请输入姓名！' }],
+                                    })(
+                                        <Input addonAfter="支" />
+                                    )}
+                                </FormItem>
                         </Col>
                         <Col span={6}>
-                            <FormItem  {...FormItemLayout} hasFeedback>
-                                <div>老年人认知功能*</div>
-                                {getFieldDecorator('IdCardNo', {
-
-                                })(
-                                    <Radio.Group defaultValue="0" buttonStyle="solid">
-                                        <Radio.Button style={radioStyle} value="1">粗筛阴性</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="2">粗筛阳性</Radio.Button>
-
-                                    </Radio.Group>
-                                )}
-                            </FormItem>
-                            <FormItem  {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('IdCardNo', {
-
-                                })(
-                                    <Input addonBefore={'总分'}  />
-                                )}
-                            </FormItem>
+                                <FormItem label="开始吸烟年龄" {...FormItemLayout} hasFeedback>
+                                    {getFieldDecorator('id', {
+                                        rules: [{ required: true, message: '请输入姓名！' }],
+                                    })(
+                                        <Input addonAfter="岁" />
+                                    )}
+                                </FormItem>
                         </Col>
-                        <Col span={6}>
-                            <FormItem  {...FormItemLayout} hasFeedback>
-                                <div>老年人情感状态*</div>
-                                {getFieldDecorator('IdCardNo', {
-
-                                })(
-                                    <Radio.Group defaultValue="0" buttonStyle="solid">
-                                        <Radio.Button style={radioStyle} value="1">粗筛阴性</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="2">粗筛阳性</Radio.Button>
-
-                                    </Radio.Group>
-                                )}
-                            </FormItem>
-                            <FormItem  {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('IdCardNo', {
-
-                                })(
-                                    <Input size={'small'} addonBefore={'总分'}  />
-                                )}
-                            </FormItem>
+                        <Col span={4}>
+                                <FormItem label="戒烟年龄" {...FormItemLayout} hasFeedback>
+                                    {getFieldDecorator('id', {
+                                        rules: [{ required: true, message: '请输入姓名！' }],
+                                    })(
+                                        <Input addonAfter="岁" />
+                                    )}
+                                </FormItem>
                         </Col>
                     </Row>
                     
+                    <div className="cateTitle">饮酒情况</div>
 
+                    <FormItem  {...FormItemLayout} hasFeedback>
+                        <span>饮酒频率： </span>
+                        {getFieldDecorator('symptom', {
+
+                        })(
+
+                            <Radio.Group defaultValue="0" buttonStyle="solid">
+                                <Radio.Button style={radioStyle} value="1">从不</Radio.Button>
+                                <Radio.Button style={radioStyle} value="2">偶尔</Radio.Button>
+                                <Radio.Button style={radioStyle} value="3">经常</Radio.Button>
+                            </Radio.Group>
+                        )}
+                    </FormItem>
+                    
+                    <Row gutter={8}>
+                        <Col span={6}>
+                                <FormItem label="日饮酒量"  {...FormItemLayout7} hasFeedback>
+                                    {getFieldDecorator('id', {
+                                        rules: [{ required: true, message: '请输入姓名！' }],
+                                    })(
+                                        <Input addonAfter="两" />
+                                    )}
+                                </FormItem>
+                        </Col>
+                        <Col span={6}>
+                                <FormItem   hasFeedback>
+                                    <span>是否戒酒： </span>
+                                    {getFieldDecorator('symptom', {
+
+                                    })(
+
+                                        <Radio.Group defaultValue="0" buttonStyle="solid">
+                                            <Radio.Button style={radioStyle} value="1">未戒酒</Radio.Button>
+                                            <Radio.Button style={radioStyle} value="2">已戒酒</Radio.Button>
+                            
+                                        </Radio.Group>
+                                    )}
+                                </FormItem>
+                        </Col>
+                        <Col span={6}>
+                                <FormItem label="开始饮酒年龄：" {...FormItemLayoutW}  hasFeedback>
+                                    {getFieldDecorator('id', {
+                                        rules: [{ required: true, message: '请输入姓名！' }],
+                                    })(
+                                        <Input addonAfter="岁" />
+                                    )}
+                                </FormItem>
+                        </Col>
+                        <Col span={6}>
+                                <FormItem   hasFeedback>
+                                    <span>近一年内是否曾醉酒：</span>
+                                    {getFieldDecorator('symptom', {
+
+                                    })(
+
+                                        <Radio.Group defaultValue="0" buttonStyle="solid">
+                                            <Radio.Button style={radioStyle} value="1">是</Radio.Button>
+                                            <Radio.Button style={radioStyle} value="2">否</Radio.Button>
+                            
+                                        </Radio.Group>
+                                    )}
+                                </FormItem>
+                        </Col>
+                    </Row>
+
+                    <div className="cateTitle">职业病危害因素接触史</div>
+                        <FormItem  {...FormItemLayout} hasFeedback>
+                            {getFieldDecorator('symptom', {
+
+                            })(
+
+                                <Radio.Group defaultValue="0" buttonStyle="solid">
+                                    <Radio.Button style={radioStyle} value="1">有</Radio.Button>
+                                    <Radio.Button style={radioStyle} value="2">无</Radio.Button>
+                    
+                                </Radio.Group>
+                            )}
+                        </FormItem>
+                    <div className="cateTitle">毒物种类</div>
+                    <Checkbox.Group style={{ width: '100%' }}>
+                        <Row>
+                            <Col span={4}><Checkbox value="A">粉尘</Checkbox></Col>
+                            <Col span={4}><Checkbox value="B">放射物质</Checkbox></Col>
+                            <Col span={4}><Checkbox value="C">物理因素</Checkbox></Col>
+                            <Col span={4}><Checkbox value="D">化学物质</Checkbox></Col>
+                            <Col span={4}><Checkbox value="E">其他</Checkbox></Col>
+                        </Row>
+                    </Checkbox.Group>
 
 
                 </Form>
-            </Modal>
+
         );
     }
 }
 
-const CollectionCreateForm = Form.create()(CustomizedForm);
-export default CollectionCreateForm;
+const CollectionCreateForm1 = Form.create()(CustomizedLifeStyle);
+export default CollectionCreateForm1;

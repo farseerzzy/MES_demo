@@ -1,12 +1,39 @@
 import React, { Component } from 'react';
-import { Modal, Form, Row,Col,Input, Radio, InputNumber, Cascader, Select, AutoComplete } from 'antd';
+import { Modal,Checkbox , Form, Row,Col,Input, Radio, InputNumber, Cascader, Select, AutoComplete } from 'antd';
 import axios from 'axios';
 import address from './request/address';
 
+const CheckboxGroup = Checkbox.Group;
 const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
 const options = [];
+const checkList = [
+    {checkStatus: false, name: '无症状',label: '无症状',value: '无症状'}, 
+    {checkStatus: false, name: '头痛',label: '头痛',value: '头痛'}, 
+    {checkStatus: false, name: '头晕',label: '头晕',value: '头晕'}, 
+    {checkStatus: false, name: '心悸',label: '心悸',value: '心悸'},
+    {checkStatus: false, name: '胸闷',label: '胸闷',value: '胸闷'}, 
+    {checkStatus: false, name: '胸痛',label: '胸痛',value: '胸痛'}, 
+    {checkStatus: false, name: '慢性咳嗽',label: '慢性咳嗽',value: '慢性咳嗽'},
+    {checkStatus: false, name: '咳痰',label: '咳痰',value: '咳痰'},
+    {checkStatus: false, name: '呼吸困难',label: '呼吸困难',value: '呼吸困难'}, 
+    {checkStatus: false, name: '多饮',label: '多饮',value: '多饮'}, 
+    {checkStatus: false, name: '多尿',label: '多尿',value: '多尿' }, 
+    {checkStatus: false, name: '体重下降',label: '体重下降',value: '体重下降'},
+    {checkStatus: false, name: '乏力',label: '乏力',value: '乏力'}, 
+    {checkStatus: false, name: '关节肿痛',label: '关节肿痛',value: '关节肿痛'}, 
+    {checkStatus: false, name: '视力模糊',label: '视力模糊',value: '视力模糊'}, 
+    {checkStatus: false, name: '手脚麻木',label: '手脚麻木',value: '手脚麻木'},
+    {checkStatus: false, name: '尿急',label: '尿急',value: '尿急'}, 
+    {checkStatus: false, name: '尿痛便秘',label: '尿痛便秘',value: '尿痛便秘'}, 
+    {checkStatus: false, name: '便秘',label: '便秘',value: '便秘'}, 
+    {checkStatus: false, name: '腹泻',label: '腹泻',value: '腹泻'},
+    {checkStatus: false, name: '恶心呕吐',label: '恶心呕吐',value: '恶心呕吐'}, 
+    {checkStatus: false, name: '眼花',label: '眼花',value: '眼花'}, 
+    {checkStatus: false, name: '耳鸣',label: '耳鸣',value: '耳鸣'},
+    {checkStatus: false, name: '乳房胀痛',label: '乳房胀痛',value: '乳房胀痛'}];
+
 
 class CustomizedForm extends Component{
     state = {
@@ -15,32 +42,7 @@ class CustomizedForm extends Component{
     constructor(props){
         super(props);
     }
-    componentDidMount(){
-        axios.get('/address')
-            .then(function (response) {
-                response.data.map(function(province){
-                    options.push({
-                        value: province.name,
-                        label: province.name,
-                        children: province.city.map(function(city){
-                            return {
-                                value: city.name,
-                                label: city.name,
-                                children: city.area.map(function(area){
-                                    return {
-                                        value: area,
-                                        label: area,
-                                    }
-                                })
-                            }
-                        }),
-                    })
-                })
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
+
     handleWebsiteChange = (value) => {
         let autoCompleteResult;
         if (!value) {
@@ -50,87 +52,36 @@ class CustomizedForm extends Component{
         }
         this.setState({ autoCompleteResult });
     };
+    showConsole = () =>{
+        console.log('asdadasdadasdasda')
+    }
     render(){
         const { visible, onCancel, onCreate, form, okText, title } = this.props;
         const { getFieldDecorator } = form;
         const { autoCompleteResult } = this.state;
+
         const FormItemLayout = {
             labelCol: { span: 5 },
-            wrapperCol: { span: 16 },
+            wrapperCol: { span: 20 },
         };
-        const websiteOptions = autoCompleteResult.map(website => (
-            <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-        ));
         return (
-            <Modal
-                visible={visible}
-                title={title}
-                okText={okText}
-                onCancel={onCancel}
-                onOk={onCreate}
-            >
+                <div class="symptom">
                 <Form layout="vertical">
-                    <Row gutter={16}>
-                    <Col span={12} >
-                    <FormItem label="姓名" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('id', {
-                            rules: [{ required: true, message: '请输入姓名！' }],
-                        })(
-                            <Input />
-                        )}
-                    </FormItem>
-                    </Col>
-                    <Col span={12} >
-                    <FormItem label="性别" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('sex', {
-                            rules: [{ required: true, message: '请选择性别！' }],
-                        })(
-                            <Radio.Group style={{marginRight: 20}}>
-                                <Radio value='男'>男</Radio>
-                                <Radio value='女'>女</Radio>
-                            </Radio.Group>
-                        )}
-                    </FormItem>
-                    </Col>
-                    </Row>
-                    <FormItem label="年龄" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('age', {
-                            rules: [{ required: true, message: '请输入年龄！' }],
-                        })(
-                            <InputNumber min={0} max={199} step={1} />
-                        )}
-                    </FormItem>
-                    <FormItem label="症状" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('symptom', {
-                            rules: [{ required: true, message: '请输入症状！' }],
-                        })(
-                            <Input />
-                        )}
-                    </FormItem>
-                    <FormItem label="手机号" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('phone', {
-                            rules: [{
-                                pattern: /^1(3|4|5|7|8)\d{9}$/, message: "手机号码格式不正确！"
-                            },{
-                                required: true, message: '请输入手机号！'
-                            }],
-                        })(
-                            <Input addonBefore={"+86"} style={{ width: '100%' }} />
-                        )}
-                    </FormItem>
-                    <FormItem label="身份证号" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('IdCardNo', {
+                     <CheckboxGroup options={checkList} />      
+                    <br/>
+                    <br/>
+                     <FormItem  {...FormItemLayout} hasFeedback>
+                                {getFieldDecorator('IdCardNo', {
 
-                        })(
-                            <Input />
-                        )}
-                    </FormItem>
-                    
+                                })(
+                                    <Input  addonBefore={'其他'}  />
+                                )}
+                      </FormItem>
                 </Form>
-            </Modal>
+                </div>
         );
     }
 }
 
-const CollectionCreateForm = Form.create()(CustomizedForm);
-export default CollectionCreateForm;
+const CollectionCreateForm1 = Form.create()(CustomizedForm);
+export default CollectionCreateForm1;

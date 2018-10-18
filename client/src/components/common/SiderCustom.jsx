@@ -111,9 +111,19 @@ export default class SiderCustom extends Component{
                     <Menu.Item key="/app/remoteMed">
                         <Link to={'/app/remoteMed'}><Icon type="setting" /><span>远程医疗</span></Link>
                     </Menu.Item>
-                    <Menu.Item key="/app/otherApi">
-                        <Link to={'/app/otherApi'}><Icon type="lock" /><span>其他接口</span></Link>
+                    <Menu.Item key="/app/chart/echarts/echarts">
+                        <Link to={'/app/chart/echarts/echarts'}><Icon type="lock" /><span>其他接口</span></Link>
                     </Menu.Item>
+
+
+                    <SubMenu
+                    key="/app/chart"
+                    title={<span><Icon type="area-chart" /><span>图表</span></span>}
+                    >
+                        <Menu.Item key="/app/chart/echarts">
+                            <Link to={'/app/chart/echarts'}><span>echarts</span></Link>
+                        </Menu.Item>
+                    </SubMenu>
                 </Menu>
             </Sider>
         )

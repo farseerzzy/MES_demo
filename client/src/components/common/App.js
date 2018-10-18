@@ -56,6 +56,7 @@ export default class App extends Component {
                             <Route exact path={'/app/archives'} component={UForm} />
                             <Route exact path={'/app/header/Calendars'} component={Calendars} />
                             <Route exact path={'/app/povertyAlleviation/echarts'} component={Echarts} />
+                            <Route exact path={'/app/chart/echarts'} component={Echarts} />
                             <Route exact path={'/app/richText'} component={RichText} />
                             <Route exact path={'/app/upload'} component={UploadEditor} />
                             <Route component={noMatch} />

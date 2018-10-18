@@ -9,7 +9,7 @@ import { Row, Col, Input, Icon, Cascader, DatePicker, Button, Tooltip, Popconfir
 import BreadcrumbCustom from '../common/BreadcrumbCustom';
 import address from './request/address.json';
 import data from './request/data.json';
-import CollectionCreateForm from './CustomizedLifeStyle';
+import CollectionCreateForm from './Customized';
 import FormTable from './FormTable';
 import Server from '../../helpers/Server'
 
@@ -272,22 +272,8 @@ export default class UForm extends Component{
     handleUpdate = () => {
         const form = this.form;
         const { dataSource, tableRowKey } = this.state;
-        form.validateFields((err, values) => {
-            if (err) {
-                return;
-            }
-            console.log('Received values of form: ', values);
-
-            values.key = tableRowKey;
-            values.address = values.address.join(" / ");
-            values.createtime = moment().format("YYYY-MM-DD hh:mm:ss");
-
-            form.resetFields();
-            this.setState({
-                visible: false,
-                dataSource: replace(dataSource, tableRowKey, values)
-            });
-        });
+        this.form.showConsole()
+        
     };
     //单选框改变选择
     checkChange = (selectedRowKeys) => {
@@ -342,10 +328,10 @@ export default class UForm extends Component{
                         editClick={this.editClick}
                         loading={loading}
                     />
-                    {isUpdate?
-                        <CollectionCreateForm ref={this.saveFormRef} visible={visible} onCancel={this.handleCancel} onCreate={this.handleUpdate} title="修改信息" okText="更新"
-                    /> : <CollectionCreateForm ref={this.saveFormRef} visible={visible} onCancel={this.handleCancel} onCreate={this.handleCreate} title="新建信息" okText="创建"
-                    />}
+                   
+                        <CollectionCreateForm ref={this.saveFormRef} visible={visible} onCancel={this.handleCancel} onCreate={this.handleUpdate} title="修改信息" okText="更新"/>
+                    
+                    
                 </div>
             </div>
         )

@@ -7,39 +7,59 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
 const options = [];
+const configData = {
+    agedLiveStatus:['满意','基本满意','说不清楚','不太满意','不满意'],
+    agedSelfCareStatus:['可自理（0~3分）','轻度依赖（4~8分）','中度依赖（9~18分）','不能自理（≥19分）'],
+    agedCognitive:['粗筛阴性','粗筛阳性'],
+    agedEmotionStatus:['粗筛阴性','粗筛阳性']
+}
 
-class CustomizedForm extends Component{
+class CustomizedHealth extends Component{
     state = {
         autoCompleteResult: [],
     };
     constructor(props){
         super(props);
+        this.state ={
+            Temp:'',//体温
+            PR:'',//脉率
+            Resp:'', //呼吸频率
+            NibpAver:'',//血压（平均压）
+            Height:'',//身高
+            Weight:'',//体重
+            waistline: '',//腰围
+            bmi: '',//体质指数
+
+            agedLiveStatus: 0,//老年人生活状态自我评估
+            agedSelfCareStatus: 0, //老年人生活自理能力自我评估
+            agedCognitive: 0, //老年人认知功能
+            agedEmotionStatus: 0, //老年人情感状态
+
+            intelligenceScore: '',//智力得分
+            emotionScore: '',//抑郁评分得分
+
+        }
     }
-    componentDidMount(){
-        axios.get('/address')
-            .then(function (response) {
-                response.data.map(function(province){
-                    options.push({
-                        value: province.name,
-                        label: province.name,
-                        children: province.city.map(function(city){
-                            return {
-                                value: city.name,
-                                label: city.name,
-                                children: city.area.map(function(area){
-                                    return {
-                                        value: area,
-                                        label: area,
-                                    }
-                                })
-                            }
-                        }),
-                    })
-                })
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+    showConsole = () =>{
+        console.log('asdadasdadasdasda')
+    }
+    syncData =()=>{
+            //处理数据
+            var data  = [{
+                Temp:this.state.Temp,//体温
+                PR:this.state.PR,//脉率
+                Resp:this.state.Resp, //呼吸频率
+                NibpAver:this.state.NibpAver,//血压（平均压）
+                HeightM:this.state.Height,//身高
+                Weight:this.state.Weight,//体重
+                waistline: this.state.waistline,//腰围
+                bmi: this.state.bmi,//体质指数
+                agedLiveStatus: configData.agedLiveStatus[this.state.agedLiveStatus],//老年人生活状态自我评估
+                agedSelfCareStatus: configData.agedSelfCareStatus[this.state.agedSelfCareStatus], //老年人生活自理能力自我评估
+                agedCognitive: configData.agedCognitive[this.state.agedCognitive], //老年人认知功能
+                agedEmotionStatus: configData.agedEmotionStatus[this.state.agedEmotionStatus], //老年人情感状态]
+            }]
+            
     }
     handleWebsiteChange = (value) => {
         let autoCompleteResult;
@@ -68,14 +88,7 @@ class CustomizedForm extends Component{
             <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
         ));
         return (
-            <Modal
-                visible={visible}
-                title={title}
-                okText={okText}
-                onCancel={onCancel}
-                onOk={onCreate}
-                width = {1200}
-            >
+
                 <Form layout="horizontal">
 
                     <Row gutter={8}>
@@ -242,10 +255,9 @@ class CustomizedForm extends Component{
 
 
                 </Form>
-            </Modal>
         );
     }
 }
 
-const CollectionCreateForm = Form.create()(CustomizedForm);
-export default CollectionCreateForm;
+const CustomizedHealth1 = Form.create()(CustomizedHealth);
+export default CustomizedHealth1;
