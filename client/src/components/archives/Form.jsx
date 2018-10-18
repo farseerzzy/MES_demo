@@ -34,7 +34,8 @@ function isContains(arr, item){
 //找到对应元素的索引
 function catchIndex(arr, key){ //获取INDEX
     arr.map(function (ar, index) {
-        if(ar.key === key){
+        console.log(ar)
+        if(ar.id === key){
             return index;
         }
     });
@@ -43,6 +44,7 @@ function catchIndex(arr, key){ //获取INDEX
 //替换数组的对应项
 function replace(arr, item, place){ //arr 数组,item 数组其中一项, place 替换项
     arr.map(function (ar) {
+
         if(ar.key === item){
             arr.splice(arr.indexOf(ar),1,place)
         }
@@ -65,6 +67,7 @@ export default class UForm extends Component{
             isUpdate: false,
             loading: true,
             userList:[],
+            userListSelected:null
         };
     }
     //getData
@@ -252,27 +255,31 @@ export default class UForm extends Component{
         const form = this.form;
         const { userList } = this.state;
         const index = catchIndex(userList, key);
+
+
         form.setFieldsValue({
-            key: key,
-            name: userList[index].id,
-            sex: userList[index].sex,
-            age: userList[index].age,
-            symptom: userList[index].symptom,
-            phone: userList[index].phone,
-            IdCardNo: userList[index].IdCardNo,
+            //key: key,
+            //name: userList[index].id,
+            //sex: userList[index].sex,
+            //age: userList[index].age,
+            //symptom: userList[index].symptom,
+            //phone: userList[index].phone,
+            //IdCardNo: userList[index].IdCardNo,
            
         });
         this.setState({
             visible: true,
             tableRowKey: key,
             isUpdate: true,
+            userListSelected:userList[index]
         });
+
     };
     //更新修改
     handleUpdate = () => {
         const form = this.form;
         const { dataSource, tableRowKey } = this.state;
-        this.form.showConsole()
+        console.log(this)
         
     };
     //单选框改变选择
@@ -329,7 +336,7 @@ export default class UForm extends Component{
                         loading={loading}
                     />
                    
-                        <CollectionCreateForm ref={this.saveFormRef} visible={visible} onCancel={this.handleCancel} onCreate={this.handleUpdate} title="修改信息" okText="更新"/>
+                        <CollectionCreateForm ref={this.saveFormRef} rowData = {this.state.userListSelected} visible={visible} onCancel={this.handleCancel} onCreate={this.handleUpdate} title="修改信息" okText="更新"/>
                     
                     
                 </div>

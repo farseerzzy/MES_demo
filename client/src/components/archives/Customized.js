@@ -20,6 +20,7 @@ class Customized extends Component{
         this.state = {
             value: 1,
         }
+
     }
 
     handleWebsiteChange = (value) => {
@@ -36,20 +37,23 @@ class Customized extends Component{
             value: e.target.value,
         });
     };
-    showTab = (value) => {
+    saveFormRef = (formcs)=>{
+        this.cfrom = formcs
+    }
+    showTab = (value,forms) => {
         switch(value){
             case 1:
-                return <CollectionCreateForm1 />;
+                return <CollectionCreateForm1 ref={this.saveFormRef} form={forms} />;
             case 2:
-                return <CustomizedHealth1 />;
+                return <CustomizedHealth1 ref={this.saveFormRef} form={forms} />;
             case 3:
-                return <CustomizedLifeStyle1 />;
+                return <CustomizedLifeStyle1 ref={this.saveFormRef} form={forms} />;
 
         }
     };
 
     showConsole = () =>{
-        console.log('asdadasdadasdasda')
+        console.log(this)
     }
 
 
@@ -73,7 +77,7 @@ class Customized extends Component{
                 title={title}
                 okText={okText}
                 onCancel={onCancel}
-                onOk={onCreate}
+                onOk={this.showConsole}
                 width = {1200}
             >
             <div className="CustomizedForm">
@@ -86,7 +90,7 @@ class Customized extends Component{
                         </RadioGroup>
                     </div>
                     <div className="showEchart">
-                        {this.showTab(value)}
+                        {this.showTab(value,form)}
                     </div>
                 </div>
 

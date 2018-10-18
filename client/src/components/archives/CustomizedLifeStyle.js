@@ -15,6 +15,7 @@ class CustomizedLifeStyle extends Component{
     };
     constructor(props){
         super(props);
+        console.log(props)
     }
     showConsole = () =>{
         console.log('asdadasdadasdasda')
