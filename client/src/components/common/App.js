@@ -5,7 +5,7 @@ import '../../style/index.less';
 
 import SiderCustom from './SiderCustom';
 import HeaderCustom from './HeaderCustom';
-import MIndex from '../index/Index';
+import MIndex from '../index/tindex';
 import Calendars from '../header/Calendars';
 import Echarts from '../chart/echarts/Echarts';
 import UForm from '../archives/Form';
@@ -65,6 +65,7 @@ export default class App extends Component {
                             <Route exact path={'/app/povertyAlleviation/analysis'} component={analysis} />
                             <Route exact path={'/app/povertyAlleviation/tFee'} component={tFee} />
                             <Route exact path={'/app/povertyAlleviation/anaFee'} component={anaFee} />
+                            <Route exact path={'/app/publicHealth'} component={MIndex} />
                             <Route component={noMatch} />
                         </Switch>
                     </Content>
