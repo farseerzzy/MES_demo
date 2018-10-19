@@ -37,17 +37,38 @@ class Customized extends Component{
             value: e.target.value,
         });
     };
-    saveFormRef = (formcs)=>{
-        this.cfrom = formcs
+
+    onRefForm = (ref) => {
+        this.child = ref;
     }
-    showTab = (value,forms) => {
+    onRefHealth = (ref) => {
+        this.child2 = ref;
+    }
+    onRefStyle = (ref) => {
+        this.child3 = ref;
+    }
+    onOkProcess = ()=>{
+        switch(this.state.value){
+            case 1:
+                this.child.updateData();
+                break;
+            case 2:
+                this.child2.updateData();
+                break;
+            case 3:
+                this.child3.updateData();
+                break;
+
+        }
+    }
+    showTab = (value) => {
         switch(value){
             case 1:
-                return <CollectionCreateForm1 ref={this.saveFormRef} form={forms} />;
+                return <CollectionCreateForm1 onRef={this.onRefForm} rowData={this.props.rowData} />;
             case 2:
-                return <CustomizedHealth1 ref={this.saveFormRef} form={forms} />;
+                return <CustomizedHealth1 onRef={this.onRefHealth} rowData={this.props.rowData} />;
             case 3:
-                return <CustomizedLifeStyle1 ref={this.saveFormRef} form={forms} />;
+                return <CustomizedLifeStyle1 onRef={this.onRefStyle} rowData={this.props.rowData} />;
 
         }
     };
@@ -77,7 +98,7 @@ class Customized extends Component{
                 title={title}
                 okText={okText}
                 onCancel={onCancel}
-                onOk={this.showConsole}
+                onOk={this.onOkProcess}
                 width = {1200}
             >
             <div className="CustomizedForm">

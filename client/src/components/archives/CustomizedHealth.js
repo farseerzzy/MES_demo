@@ -40,8 +40,11 @@ class CustomizedHealth extends Component{
 
         }
     }
-    showConsole = () =>{
-        console.log('asdadasdadasdasda')
+    updateData = () =>{
+        console.log('22222')
+    }
+    componentDidMount(){
+        this.props.onRef(this)
     }
     syncData =()=>{
             //处理数据
@@ -84,9 +87,7 @@ class CustomizedHealth extends Component{
             lineHeight: '30px',
         };
         const layoutc = {span: 6, offset: 20}
-        const websiteOptions = autoCompleteResult.map(website => (
-            <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-        ));
+
         return (
 
                 <Form layout="horizontal">

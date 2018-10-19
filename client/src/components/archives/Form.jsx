@@ -336,7 +336,7 @@ export default class UForm extends Component{
                         loading={loading}
                     />
                    
-                        <CollectionCreateForm ref={this.saveFormRef} rowData = {this.state.userListSelected} visible={visible} onCancel={this.handleCancel} onCreate={this.handleUpdate} title="修改信息" okText="更新"/>
+                        <CollectionCreateForm ref={this.saveFormRef}  visible={visible} onCancel={this.handleCancel} onCreate={this.handleUpdate} title="修改信息" okText="更新"/>
                     
                     
                 </div>

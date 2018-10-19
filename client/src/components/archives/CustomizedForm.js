@@ -43,6 +43,9 @@ class CustomizedForm extends Component{
         super(props);
     }
 
+    componentDidMount(){
+        this.props.onRef(this)
+    }
     handleWebsiteChange = (value) => {
         let autoCompleteResult;
         if (!value) {
@@ -52,7 +55,7 @@ class CustomizedForm extends Component{
         }
         this.setState({ autoCompleteResult });
     };
-    showConsole = () =>{
+    updateData = () =>{
         console.log('asdadasdadasdasda')
     }
     render(){

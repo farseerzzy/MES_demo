@@ -17,10 +17,12 @@ class CustomizedLifeStyle extends Component{
         super(props);
         console.log(props)
     }
-    showConsole = () =>{
-        console.log('asdadasdadasdasda')
+    updateData = () =>{
+        console.log('333333')
     }
+
     componentDidMount(){
+        this.props.onRef(this)
         axios.get('/address')
             .then(function (response) {
                 response.data.map(function(province){

@@ -12,6 +12,11 @@ import UForm from '../archives/Form';
 import noMatch from './404';
 import RichText from "../richText/RichText";
 import UploadEditor from "../upload/UploadEditor";
+import problem from '../povertyAlleviation/problem';
+import expert from '../povertyAlleviation/expert';
+import analysis from '../povertyAlleviation/analysis';
+import tFee from '../povertyAlleviation/tFee';
+import anaFee from '../povertyAlleviation/anaFee';
 
 const {Content, Footer} = Layout;
 
@@ -55,10 +60,11 @@ export default class App extends Component {
                             <Route exact path={'/app'} component={MIndex} />
                             <Route exact path={'/app/archives'} component={UForm} />
                             <Route exact path={'/app/header/Calendars'} component={Calendars} />
-                            <Route exact path={'/app/povertyAlleviation/echarts'} component={Echarts} />
-                            <Route exact path={'/app/chart/echarts'} component={Echarts} />
-                            <Route exact path={'/app/richText'} component={RichText} />
-                            <Route exact path={'/app/upload'} component={UploadEditor} />
+                            <Route exact path={'/app/povertyAlleviation/problem'} component={problem} />
+                            <Route exact path={'/app/povertyAlleviation/expert'} component={expert} />
+                            <Route exact path={'/app/povertyAlleviation/analysis'} component={analysis} />
+                            <Route exact path={'/app/povertyAlleviation/tFee'} component={tFee} />
+                            <Route exact path={'/app/povertyAlleviation/anaFee'} component={anaFee} />
                             <Route component={noMatch} />
                         </Switch>
                     </Content>
