@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal,Checkbox , Form, Row,Col,Input, Radio, InputNumber, Cascader, Select, AutoComplete } from 'antd';
-import axios from 'axios';
+import Server from '../../helpers/Server'
 import address from './request/address';
 
 const CheckboxGroup = Checkbox.Group;
@@ -44,8 +44,46 @@ class CustomizedForm extends Component{
     }
 
     componentDidMount(){
-        this.props.onRef(this)
+        this.props.onRef(this);
+        if(this.props.rowData.symptom!=undefined){
+
+            var symptomArr = this.props.rowData.symptom.split(',');
+            var symptomInsertArr = [];
+            for (var i = 0; i < symptomArr.length; i++) {
+                var name = symptomArr[i];
+                for (var j = 0; j < checkList.length; j++) {
+                    var obj = checkList[j];
+
+
+                    if(name == obj.name){
+                        console.log( obj.name)
+                        symptomInsertArr.push(obj.name) ;
+                    }
+                }
+            }
+
+            this.props.form.setFieldsValue({
+                symptom:symptomInsertArr
+            });
+        }
+        if(this.props.rowData.otherSymptom!=undefined){
+            this.props.form.setFieldsValue({
+                otherSymptom:this.props.rowData.otherSymptom
+            });
+        }
     }
+
+    findDiff =  (arr1, arr2) =>{
+        var set2 = new Set(arr2);
+        var subset = [];
+        arr1.forEach(function(val, index) {
+            if (!set2.has(val)) {
+                subset.push(val);
+            }
+        });
+        return subset;
+    };
+
     handleWebsiteChange = (value) => {
         let autoCompleteResult;
         if (!value) {
@@ -55,8 +93,25 @@ class CustomizedForm extends Component{
         }
         this.setState({ autoCompleteResult });
     };
-    updateData = () =>{
-        console.log('asdadasdadasdasda')
+    updateData =()=>{
+        const {getFieldValue} = this.props.form;
+        let sArray = getFieldValue('symptom');
+        let otherSymptom = getFieldValue('otherSymptom');
+
+        if(sArray.length > 0 || otherSymptom!==''){
+
+            var data = {
+                symptom : sArray.join(','),
+                otherSymptom:otherSymptom
+            }
+            console.log(data)
+            let userid = this.props.rowData._id;
+            Server.postHealthInfo(data,userid,function (res) {
+                console.log(res)
+            })
+        }else {
+            Server.showAlert('输入值为空');
+        }
     }
     render(){
         const { visible, onCancel, onCreate, form, okText, title } = this.props;
@@ -68,13 +123,21 @@ class CustomizedForm extends Component{
             wrapperCol: { span: 20 },
         };
         return (
-                <div class="symptom">
-                <Form layout="vertical">
-                     <CheckboxGroup options={checkList} />      
+                <div className="symptom">
+                <Form   layout="vertical">
+                    <FormItem  {...FormItemLayout} >
+                        {getFieldDecorator('symptom', {
+
+                        })(
+                            <CheckboxGroup options={checkList} />
+                        )}
+                    </FormItem>
+
+
                     <br/>
                     <br/>
-                     <FormItem  {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('IdCardNo', {
+                     <FormItem  {...FormItemLayout} >
+                                {getFieldDecorator('otherSymptom', {
 
                                 })(
                                     <Input  addonBefore={'其他'}  />

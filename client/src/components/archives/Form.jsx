@@ -33,13 +33,15 @@ function isContains(arr, item){
 }
 //找到对应元素的索引
 function catchIndex(arr, key){ //获取INDEX
+    var retval = 0;
     arr.map(function (ar, index) {
-        console.log(ar)
-        if(ar.id === key){
-            return index;
+        if(ar._id == key){
+            console.log(index)
+            retval =  index;
         }
     });
-    return 0;
+    return retval;
+
 }
 //替换数组的对应项
 function replace(arr, item, place){ //arr 数组,item 数组其中一项, place 替换项
@@ -87,7 +89,7 @@ export default class UForm extends Component{
 
 
         Server.getUserList(function (res) {
-            console.log(res)
+
             var dataObj = res.data;
 
             self.setState({
@@ -237,6 +239,7 @@ export default class UForm extends Component{
     //取消
     handleCancel = () => {
         this.setState({ visible: false });
+        this.form.resetFields()
     };
     //批量删除
     MinusClick = () => {
@@ -254,24 +257,13 @@ export default class UForm extends Component{
     editClick = (key) => {
         const form = this.form;
         const { userList } = this.state;
-        const index = catchIndex(userList, key);
+        const indexc = catchIndex(userList, key);
+        this.userListSelected = userList[indexc];
 
-
-        form.setFieldsValue({
-            //key: key,
-            //name: userList[index].id,
-            //sex: userList[index].sex,
-            //age: userList[index].age,
-            //symptom: userList[index].symptom,
-            //phone: userList[index].phone,
-            //IdCardNo: userList[index].IdCardNo,
-           
-        });
         this.setState({
             visible: true,
             tableRowKey: key,
             isUpdate: true,
-            userListSelected:userList[index]
         });
 
     };
@@ -279,7 +271,6 @@ export default class UForm extends Component{
     handleUpdate = () => {
         const form = this.form;
         const { dataSource, tableRowKey } = this.state;
-        console.log(this)
         
     };
     //单选框改变选择
@@ -335,8 +326,11 @@ export default class UForm extends Component{
                         editClick={this.editClick}
                         loading={loading}
                     />
-                   
-                        <CollectionCreateForm ref={this.saveFormRef}  visible={visible} onCancel={this.handleCancel} onCreate={this.handleUpdate} title="修改信息" okText="更新"/>
+                    {   this.state.visible
+                        ? <CollectionCreateForm ref={this.saveFormRef} rowData = {this.userListSelected}  visible={visible} onCancel={this.handleCancel} onCreate={this.handleUpdate} title="修改信息" okText="更新"/>
+                        : null
+                    }
+
                     
                     
                 </div>

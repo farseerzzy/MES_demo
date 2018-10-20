@@ -60,8 +60,8 @@ export default class SiderCustom extends Component{
             width={300}
             >
                 <div className="time" >
-                    <div class="year">2018</div>
-                    <div class="date">{date}</div>
+                    <div className="year">2018</div>
+                    <div className="date">{date}</div>
                 </div>
                 <Menu
                     theme="dark"
@@ -117,7 +117,7 @@ export default class SiderCustom extends Component{
 
                 </Menu>
 
-                <div class="slide_bottom">
+                <div className="slide_bottom">
                     <Button icon="search" href={"/app/archives"}>数据检索</Button>
                     <Button type="primary" icon="search" href={"/app/archives"}>档案查询</Button>
                 </div>

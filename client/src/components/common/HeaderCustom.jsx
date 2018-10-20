@@ -32,23 +32,23 @@ export default class HeaderCustom extends Component{
     render(){
         return(
             <Header style={{ background: '#33383c', padding: 0 }} className="header">
-                <img class="logo" src = {LogoImg}/>
-                <img class="head1" src = {Head1Img}/>
+                <img className="logo" src = {LogoImg}/>
+                <img className="head1" src = {Head1Img}/>
 
                 <Menu
                     mode="horizontal"
                     style={{ lineHeight: '64px', float: 'right' }}
                 >
                     <Menu.Item>
-                    <Input placeholder ="请请输入要搜索的内容..." class="head_input" />
+                    <Input placeholder ="请请输入要搜索的内容..." className="head_input" />
                     </Menu.Item>
                     <Menu.Item>
                      <Button type="primary" icon="search" >搜索</Button>
                     </Menu.Item>
                     <Menu.Item>
                         <div>
-                            <img class="head2" src = {Head2Img}/>
-                            <a class="logout" onClick={this.logout}/>
+                            <img className="head2" src = {Head2Img}/>
+                            <a className="logout" onClick={this.logout}/>
                         </div>
                     </Menu.Item>
 

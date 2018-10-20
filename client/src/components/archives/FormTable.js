@@ -16,34 +16,21 @@ export default class FormTable extends Component{
         };
         const columns = [{
             title: '姓名',
-            dataIndex: 'id',
+            dataIndex: 'Name',
             width: 80,
         }, {
-            title: '性别',
-            dataIndex: 'sex',
-            filters: [
-                { text: '男', value: '男' },
-                { text: '女', value: '女' },
-            ],
-            onFilter: (value, record) => record.sex.indexOf(value) === 0,
-            width: 80,
-        }, {
-            title: '年龄',
-            dataIndex: 'age',
-            sorter: (a, b) => a.age - b.age,
-            width: 80,
-        },{
-            title: '症状',
-            dataIndex: 'symptom',
-            width: 180,
-        },{
-            title: '手机号',
-            dataIndex: 'phone',
-            width: 120,
-        },{
             title: '身份证号',
             dataIndex: 'IdCardNo',
-            width:140,
+            width: 80,
+        }, {
+            title: '身高',
+            dataIndex: 'GeneralSymptoms[0].Height',
+
+            width: 80,
+        },{
+            title: '体重',
+            dataIndex: 'GeneralSymptoms[0].Weight',
+            width: 80,
         },{
             title: '创建时间',
             dataIndex: 'createdAt',
@@ -55,7 +42,7 @@ export default class FormTable extends Component{
             width:100,
             render: (text, record) =>
                 <div className='opera'>
-                    <span onClick={() => editClick(record.id)}>
+                    <span onClick={() => editClick(record._id)}>
                          <Icon type="edit" /> 修改
                     </span><br />
                     

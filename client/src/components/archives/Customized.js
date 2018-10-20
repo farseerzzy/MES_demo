@@ -36,6 +36,8 @@ class Customized extends Component{
         this.setState({
             value: e.target.value,
         });
+    
+
     };
 
     onRefForm = (ref) => {
@@ -66,7 +68,7 @@ class Customized extends Component{
             case 1:
                 return <CollectionCreateForm1 onRef={this.onRefForm} rowData={this.props.rowData} />;
             case 2:
-                return <CustomizedHealth1 onRef={this.onRefHealth} rowData={this.props.rowData} />;
+                return <CustomizedHealth1  onRef={this.onRefHealth} rowData={this.props.rowData} />;
             case 3:
                 return <CustomizedLifeStyle1 onRef={this.onRefStyle} rowData={this.props.rowData} />;
 
@@ -74,7 +76,7 @@ class Customized extends Component{
     };
 
     showConsole = () =>{
-        console.log(this)
+
     }
 
 

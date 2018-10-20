@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Modal, Form,Row,Col, Input, Radio, InputNumber, Cascader, Select, AutoComplete } from 'antd';
 import axios from 'axios';
 import address from './request/address';
+import Server from "../../helpers/Server";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -20,48 +21,59 @@ class CustomizedHealth extends Component{
     };
     constructor(props){
         super(props);
-        this.state ={
-            Temp:'',//体温
-            PR:'',//脉率
-            Resp:'', //呼吸频率
-            NibpAver:'',//血压（平均压）
-            Height:'',//身高
-            Weight:'',//体重
-            waistline: '',//腰围
-            bmi: '',//体质指数
 
-            agedLiveStatus: 0,//老年人生活状态自我评估
-            agedSelfCareStatus: 0, //老年人生活自理能力自我评估
-            agedCognitive: 0, //老年人认知功能
-            agedEmotionStatus: 0, //老年人情感状态
 
-            intelligenceScore: '',//智力得分
-            emotionScore: '',//抑郁评分得分
-
-        }
     }
-    updateData = () =>{
-        console.log('22222')
-    }
+
     componentDidMount(){
-        this.props.onRef(this)
+        this.props.onRef(this);
+        if(this.props.rowData.GeneralSymptoms!=undefined){
+            this.props.form.setFieldsValue({
+
+
+                Temp:this.props.rowData.GeneralSymptoms[0].Temp,//体温
+                PR:this.props.rowData.GeneralSymptoms[0].PR,//脉率
+                Resp:this.props.rowData.GeneralSymptoms[0].Resp, //呼吸频率
+                NibpAver:this.props.rowData.GeneralSymptoms[0].NibpAver,//血压（平均压）
+                HeightM:this.props.rowData.GeneralSymptoms[0].Height,//身高
+                Weight:this.props.rowData.GeneralSymptoms[0].Weight,//体重
+                waistline: this.props.rowData.GeneralSymptoms[0].waistline,//腰围
+                bmi: this.props.rowData.GeneralSymptoms[0].bmi,//体质指数
+                agedLiveStatus: this.props.rowData.GeneralSymptoms[0].agedLiveStatus,//老年人生活状态自我评估
+                agedSelfCareStatus: this.props.rowData.GeneralSymptoms[0].agedSelfCareStatus, //老年人生活自理能力自我评估
+                agedCognitive: this.props.rowData.GeneralSymptoms[0].agedCognitive, //老年人认知功能
+                agedEmotionStatus: this.props.rowData.GeneralSymptoms[0].agedEmotionStatus, //老年人情感状态]
+                intelligenceScore: this.props.rowData.GeneralSymptoms[0].intelligenceScore,
+                emotionScore: this.props.rowData.GeneralSymptoms[0].emotionScore,
+
+            });
+        }
+
     }
-    syncData =()=>{
+    updateData =()=>{
             //处理数据
-            var data  = [{
-                Temp:this.state.Temp,//体温
-                PR:this.state.PR,//脉率
-                Resp:this.state.Resp, //呼吸频率
-                NibpAver:this.state.NibpAver,//血压（平均压）
-                HeightM:this.state.Height,//身高
-                Weight:this.state.Weight,//体重
-                waistline: this.state.waistline,//腰围
-                bmi: this.state.bmi,//体质指数
-                agedLiveStatus: configData.agedLiveStatus[this.state.agedLiveStatus],//老年人生活状态自我评估
-                agedSelfCareStatus: configData.agedSelfCareStatus[this.state.agedSelfCareStatus], //老年人生活自理能力自我评估
-                agedCognitive: configData.agedCognitive[this.state.agedCognitive], //老年人认知功能
-                agedEmotionStatus: configData.agedEmotionStatus[this.state.agedEmotionStatus], //老年人情感状态]
-            }]
+        const {getFieldValue} = this.props.form;
+        var data  = [{
+            Temp:getFieldValue('Temp'),//体温
+            PR:getFieldValue('PR'),//脉率
+            Resp:getFieldValue('Resp'),//呼吸频率
+            NibpAver:getFieldValue('NibpAver'),//血压（平均压）
+            HeightM:getFieldValue('Height'),//身高
+            Weight:getFieldValue('Weight'),//体重
+            waistline: getFieldValue('waistline'),//腰围
+            bmi: getFieldValue('bmi'),//体质指数
+            agedLiveStatus: getFieldValue('agedLiveStatus'),//老年人生活状态自我评估
+            agedSelfCareStatus: getFieldValue('agedSelfCareStatus'),//老年人生活自理能力自我评估
+            agedCognitive: getFieldValue('agedCognitive'),//老年人认知功能
+            agedEmotionStatus: getFieldValue('agedEmotionStatus'),//老年人情感状态]
+            intelligenceScore: getFieldValue('intelligenceScore'),//老年人认知功能
+            emotionScore: getFieldValue('emotionScore')//老年人情感状态]
+        }]
+        let userid = this.props.rowData._id;
+        console.log(data)
+        Server.postHealthInfo({GeneralSymptoms: data},userid,function (res) {
+            console.log(res)
+        })
             
     }
     handleWebsiteChange = (value) => {
@@ -95,8 +107,8 @@ class CustomizedHealth extends Component{
                     <Row gutter={8}>
                         <Col span={8}>
                             <FormItem label="体温" {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('id', {
-                                    rules: [{ required: true, message: '请输入姓名！' }],
+                                {getFieldDecorator('Temp', {
+                                    rules: [{ required: true, message: '请输入体温！' }],
                                 })(
                                     <Input addonAfter="℃" />
                                 )}
@@ -104,7 +116,7 @@ class CustomizedHealth extends Component{
                         </Col>
                         <Col span={8}>
                             <FormItem label="脉搏" {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('sex', {
+                                {getFieldDecorator('PR', {
                                     
                                 })(
                                     <Input addonAfter="次/分钟" />
@@ -113,7 +125,7 @@ class CustomizedHealth extends Component{
                         </Col>
                         <Col span={8}>
                             <FormItem label="呼吸频率" {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('age', {
+                                {getFieldDecorator('Resp', {
                                    
                                 })(
                                     <Input addonAfter="次/分钟" />
@@ -124,7 +136,7 @@ class CustomizedHealth extends Component{
                     <Row gutter={8}>
                         <Col span={8}>
                             <FormItem label="血压" {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('symptom', {
+                                {getFieldDecorator('NibpAver', {
                                     
                                 })(
                                     <Input addonAfter="mmHg" />
@@ -133,7 +145,7 @@ class CustomizedHealth extends Component{
                         </Col>
                         <Col span={8}>
                             <FormItem label="身高" {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('phone', {
+                                {getFieldDecorator('Height', {
                                     
                                 })(
                                     <Input   addonAfter="CM"/>
@@ -142,7 +154,7 @@ class CustomizedHealth extends Component{
                         </Col>
                         <Col span={8}>
                             <FormItem label="体重" {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('IdCardNo', {
+                                {getFieldDecorator('Weight', {
 
                                 })(
                                     <Input addonAfter="kg" />
@@ -153,7 +165,7 @@ class CustomizedHealth extends Component{
                     <Row gutter={8}>
                         <Col span={8}>
                             <FormItem label="腰围" {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('symptom', {
+                                {getFieldDecorator('waistline', {
                                     
                                 })(
                                     <Input addonAfter="CM" />
@@ -162,7 +174,7 @@ class CustomizedHealth extends Component{
                         </Col>
                         <Col span={8}>
                             <FormItem label="体质指数" {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('phone', {
+                                {getFieldDecorator('bmi', {
                                     
                                 })(
                                     <Input   addonAfter="Kg/m2"/>
@@ -176,77 +188,79 @@ class CustomizedHealth extends Component{
 
                     <Row gutter={8}>
                         <Col span={6}>
-                            <FormItem  {...FormItemLayout} hasFeedback>
+                            <FormItem  {...FormItemLayout} >
                                 <div>老年人健康状态自我评估*</div>
-                                {getFieldDecorator('symptom', {
+                                {getFieldDecorator('agedLiveStatus', {
                                     
                                 })(
 
                                     <Radio.Group defaultValue="0" buttonStyle="solid">
-                                        <Radio.Button style={radioStyle} value="0">满意</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="1">基本满意</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="2">说不清楚</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="3">不太满意</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="4">不满意</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="满意">满意</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="基本满意">基本满意</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="说不清楚">说不清楚</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="不太满意">不太满意</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="不满意">不满意</Radio.Button>
                                       </Radio.Group>
                                 )}
                             </FormItem>
                         </Col>
                         <Col span={6}>
-                            <FormItem  {...FormItemLayout} hasFeedback>
+                            <FormItem  {...FormItemLayout} >
                                 <div>老年人生活自理能力自我评估*</div>
-                                {getFieldDecorator('phone', {
+                                {getFieldDecorator('agedSelfCareStatus', {
                                     
                                 })(
                                     <Radio.Group defaultValue="0" buttonStyle="solid">
-                                        <Radio.Button style={radioStyle} value="0">可自理（0～3分）</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="1">轻度依赖（4～8分</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="2">中度依赖（9～18分)</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="3">不能自理（≥19分）</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="可自理（0~3分）">可自理（0~3分）</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="轻度依赖（4~8分">轻度依赖（4~8分</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="中度依赖（9~18分)">中度依赖（9~18分)</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="不能自理（≥19分）">不能自理（≥19分）</Radio.Button>
 
                                     </Radio.Group>
                                 )}
                             </FormItem>
                         </Col>
                         <Col span={6}>
-                            <FormItem  {...FormItemLayout} hasFeedback>
+                            <FormItem  {...FormItemLayout} >
                                 <div>老年人认知功能*</div>
-                                {getFieldDecorator('IdCardNo', {
+                                {getFieldDecorator('agedCognitive', {
 
                                 })(
                                     <Radio.Group defaultValue="0" buttonStyle="solid">
-                                        <Radio.Button style={radioStyle} value="1">粗筛阴性</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="2">粗筛阳性</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="粗筛阴性">粗筛阴性</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="粗筛阳性">粗筛阳性</Radio.Button>
 
                                     </Radio.Group>
                                 )}
                             </FormItem>
                             <FormItem  {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('IdCardNo', {
+                                <div>智力得分</div>
+                                {getFieldDecorator('intelligenceScore', {
 
                                 })(
-                                    <Input addonBefore={'总分'}  />
+                                    <Input   />
                                 )}
                             </FormItem>
                         </Col>
                         <Col span={6}>
-                            <FormItem  {...FormItemLayout} hasFeedback>
+                            <FormItem  {...FormItemLayout} >
                                 <div>老年人情感状态*</div>
-                                {getFieldDecorator('IdCardNo', {
+                                {getFieldDecorator('agedEmotionStatus', {
 
                                 })(
                                     <Radio.Group defaultValue="0" buttonStyle="solid">
-                                        <Radio.Button style={radioStyle} value="1">粗筛阴性</Radio.Button>
-                                        <Radio.Button style={radioStyle} value="2">粗筛阳性</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="粗筛阴性">粗筛阴性</Radio.Button>
+                                        <Radio.Button style={radioStyle} value="粗筛阳性">粗筛阳性</Radio.Button>
 
                                     </Radio.Group>
                                 )}
                             </FormItem>
                             <FormItem  {...FormItemLayout} hasFeedback>
-                                {getFieldDecorator('IdCardNo', {
+                                <div>抑郁评分得分</div>
+                                {getFieldDecorator('emotionScore:', {
 
                                 })(
-                                    <Input size={'small'} addonBefore={'总分'}  />
+                                    <Input size={'small'}   />
                                 )}
                             </FormItem>
                         </Col>

@@ -7,7 +7,7 @@ const qs = require('qs');
 const globalData = {
 	total:34,
 	current:0,
-	currentId:'5bc07e2c63794f42a5926463',  //默认当前用户
+	currentId:'5bcb3a1170e5837d2f30a2e7',  //默认当前用户
 	currentCheckUserId:'',  //查看当前用户信息
 	inputProgress:{
 		total:40, //总进度
@@ -142,18 +142,19 @@ export default class Server extends React.Component {
 	}
 
 	//put 更新个人健康档案
-	static postHealthInfo(data, callback) {
-		let uid = globalData.currentId;
-		console.log(BASE_URL + uid);
-		axios.put(BASE_URL + uid, data)
-			.then(function (response) {
-				// console.log(response);
-				callback(response)
-			})
-			.catch(function (error) {
-				// console.log(error);
-				alert('提示', error);
-			});
-	}
+    static postHealthInfo(data, userid,callback) {
+        let uid = userid;
+        console.log(BASE_URL + uid);
+        axios.put(BASE_URL + uid, data)
+            .then(function (response) {
+                // console.log(response);
+                callback(response)
+                alert('更新成功')
+            })
+            .catch(function (error) {
+                // console.log(error);
+
+            });
+    }
 
 }
