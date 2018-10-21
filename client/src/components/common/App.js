@@ -7,16 +7,20 @@ import SiderCustom from './SiderCustom';
 import HeaderCustom from './HeaderCustom';
 import MIndex from '../index/tindex';
 import Calendars from '../header/Calendars';
-import Echarts from '../chart/echarts/Echarts';
+
 import UForm from '../archives/Form';
 import noMatch from './404';
-import RichText from "../richText/RichText";
-import UploadEditor from "../upload/UploadEditor";
+
 import problem from '../povertyAlleviation/problem';
 import expert from '../povertyAlleviation/expert';
 import analysis from '../povertyAlleviation/analysis';
 import tFee from '../povertyAlleviation/tFee';
 import anaFee from '../povertyAlleviation/anaFee';
+
+import remoteMed from '../remoteMed/index';
+import basicMed from '../basicMed/index';
+import connectMed from '../connectMed/index';
+import other from '../other/index';
 
 const {Content, Footer} = Layout;
 
@@ -66,6 +70,10 @@ export default class App extends Component {
                             <Route exact path={'/app/povertyAlleviation/tFee'} component={tFee} />
                             <Route exact path={'/app/povertyAlleviation/anaFee'} component={anaFee} />
                             <Route exact path={'/app/publicHealth'} component={MIndex} />
+                            <Route exact path={'/app/remoteMed'} component={remoteMed} />
+                            <Route exact path={'/app/basicMed'} component={basicMed} />
+                            <Route exact path={'/app/connectMed'} component={connectMed} />
+                            <Route exact path={'/app/other'} component={other} />
                             <Route component={noMatch} />
                         </Switch>
                     </Content>

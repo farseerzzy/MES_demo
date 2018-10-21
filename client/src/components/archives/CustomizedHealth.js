@@ -35,7 +35,7 @@ class CustomizedHealth extends Component{
                 PR:this.props.rowData.GeneralSymptoms[0].PR,//脉率
                 Resp:this.props.rowData.GeneralSymptoms[0].Resp, //呼吸频率
                 NibpAver:this.props.rowData.GeneralSymptoms[0].NibpAver,//血压（平均压）
-                HeightM:this.props.rowData.GeneralSymptoms[0].Height,//身高
+                Height:this.props.rowData.GeneralSymptoms[0].Height,//身高
                 Weight:this.props.rowData.GeneralSymptoms[0].Weight,//体重
                 waistline: this.props.rowData.GeneralSymptoms[0].waistline,//腰围
                 bmi: this.props.rowData.GeneralSymptoms[0].bmi,//体质指数
@@ -58,7 +58,7 @@ class CustomizedHealth extends Component{
             PR:getFieldValue('PR'),//脉率
             Resp:getFieldValue('Resp'),//呼吸频率
             NibpAver:getFieldValue('NibpAver'),//血压（平均压）
-            HeightM:getFieldValue('Height'),//身高
+            Height:getFieldValue('Height'),//身高
             Weight:getFieldValue('Weight'),//体重
             waistline: getFieldValue('waistline'),//腰围
             bmi: getFieldValue('bmi'),//体质指数

@@ -19,6 +19,7 @@ class Customized extends Component{
         super(props);
         this.state = {
             value: 1,
+            rowData:this.props.rowData
         }
 
     }
@@ -35,6 +36,7 @@ class Customized extends Component{
     onChange = (e) => {
         this.setState({
             value: e.target.value,
+            rowData:this.props.rowData
         });
     
 
@@ -62,17 +64,21 @@ class Customized extends Component{
                 break;
 
         }
+        this.props.updateRoot();
+        this.props.handleCancel();
     }
     showTab = (value) => {
+
         switch(value){
             case 1:
-                return <CollectionCreateForm1 onRef={this.onRefForm} rowData={this.props.rowData} />;
+                return <CollectionCreateForm1 onRef={this.onRefForm} rowData={this.state.rowData} />;
             case 2:
-                return <CustomizedHealth1  onRef={this.onRefHealth} rowData={this.props.rowData} />;
+                return <CustomizedHealth1  onRef={this.onRefHealth} rowData={this.state.rowData} />;
             case 3:
-                return <CustomizedLifeStyle1 onRef={this.onRefStyle} rowData={this.props.rowData} />;
+                return <CustomizedLifeStyle1 onRef={this.onRefStyle} rowData={this.state.rowData} />;
 
         }
+
     };
 
     showConsole = () =>{
@@ -99,6 +105,7 @@ class Customized extends Component{
                 visible={visible}
                 title={title}
                 okText={okText}
+                cancelText={'返回'}
                 onCancel={onCancel}
                 onOk={this.onOkProcess}
                 width = {1200}

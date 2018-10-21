@@ -112,11 +112,11 @@ class CustomizedLifeStyle extends Component{
         const { autoCompleteResult } = this.state;
         const FormItemLayout = {
             labelCol: { span: 10 },
-            wrapperCol: { span: 6 },
+            wrapperCol: { span: 10 },
         };
         const FormItemLayout7 = {
             labelCol: { span: 7 },
-            wrapperCol: { span: 6 },
+            wrapperCol: { span: 10 },
         };
         const FormItemLayoutW = {
             labelCol: { span: 10 },

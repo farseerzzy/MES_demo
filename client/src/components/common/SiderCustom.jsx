@@ -105,8 +105,8 @@ export default class SiderCustom extends Component{
                     <Menu.Item key="/app/basicMed">
                         <Link to={'/app/basicMed'}><Icon type="setting" /><span>基础医疗</span></Link>
                     </Menu.Item>
-                    <Menu.Item key="/app/linkMed">
-                        <Link to={'/app/linkMed'}><Icon type="folder" /><span>医联体</span></Link>
+                    <Menu.Item key="/app/connectMed">
+                        <Link to={'/app/connectMed'}><Icon type="folder" /><span>医联体</span></Link>
                     </Menu.Item>
                     <Menu.Item key="/app/remoteMed">
                         <Link to={'/app/remoteMed'}><Icon type="setting" /><span>远程医疗</span></Link>

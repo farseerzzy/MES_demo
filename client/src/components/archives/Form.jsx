@@ -116,9 +116,10 @@ export default class UForm extends Component{
     //用户名搜索
     onSearchUserName = (value) => {
         // console.log(value);
-        const { dataSource } = this.state;
+        const { userList } = this.state;
+        console.log(userList.filter(item => item.Name.indexOf(value) !== -1))
         this.setState({
-            dataSource: dataSource.filter(item => item.name.indexOf(value) !== -1),
+            userList: userList.filter(item => item.Name.indexOf(value) !== -1),
             loading: false,
         })
     };
@@ -264,6 +265,7 @@ export default class UForm extends Component{
             visible: true,
             tableRowKey: key,
             isUpdate: true,
+            userListSelected:userList[indexc]
         });
 
     };
@@ -294,30 +296,24 @@ export default class UForm extends Component{
                     <Row gutter={16}>
                         <Col className="gutter-row" sm={8}>
                             <Search
-                                placeholder="Input Name"
+                                placeholder="按姓名查找"
                                 prefix={<Icon type="user" />}
                                 value={userName}
                                 onChange={this.onChangeUserName}
                                 onSearch={this.onSearchUserName}
                             />
                         </Col>
-                        <Col className="gutter-row" sm={8}>
-                            <InputGroup compact>
-                                <Cascader style={{ width: '100%' }} options={options} placeholder="Select Address" onChange={this.Cascader_Select} value={address}/>
-                            </InputGroup>
-                        </Col>
-                        <Col className="gutter-row" sm={8}>
-                            <RangePicker style={{ width:'100%' }} onChange={this.RangePicker_Select} value={timeRange}/>
-                        </Col>
+
+
                     </Row>
                     <Row gutter={16}>
 
                         <div className='btnOpera'>
 
-                            <Button type="primary" onClick={this.btnSearch_Click} style={{marginRight:'10px'}}>查询</Button>
+
                             <Button type="primary" onClick={this.btnClear_Click} style={{background:'#f8f8f8', color: '#108ee9'}}>重置</Button>
                         </div>
-                        
+
                     </Row>
                     <FormTable
                         userList={userList}
@@ -327,7 +323,7 @@ export default class UForm extends Component{
                         loading={loading}
                     />
                     {   this.state.visible
-                        ? <CollectionCreateForm ref={this.saveFormRef} rowData = {this.userListSelected}  visible={visible} onCancel={this.handleCancel} onCreate={this.handleUpdate} title="修改信息" okText="更新"/>
+                        ? <CollectionCreateForm ref={this.saveFormRef} handleCancel = {this.handleCancel} updateRoot = {this.getData} rowData = {this.state.userListSelected}  visible={visible} onCancel={this.handleCancel} onCreate={this.handleUpdate} title="修改信息" okText="更新"/>
                         : null
                     }
 
