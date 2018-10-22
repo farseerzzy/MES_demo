@@ -21,7 +21,7 @@ import remoteMed from '../remoteMed/index';
 import basicMed from '../basicMed/index';
 import connectMed from '../connectMed/index';
 import other from '../other/index';
-
+import UFormId from '../archives/CustomizedPage';
 const {Content, Footer} = Layout;
 
 export default class App extends Component {
@@ -74,6 +74,7 @@ export default class App extends Component {
                             <Route exact path={'/app/basicMed'} component={basicMed} />
                             <Route exact path={'/app/connectMed'} component={connectMed} />
                             <Route exact path={'/app/other'} component={other} />
+                            <Route exact path={'/app/archives/:id'} component={UFormId} />
                             <Route component={noMatch} />
                         </Switch>
                     </Content>

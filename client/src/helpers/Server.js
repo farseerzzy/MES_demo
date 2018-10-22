@@ -15,7 +15,7 @@ const globalData = {
 		percent:'' //百分比
 	},
 
-	userHealthInfoFromEquenment:[]   //通过设备获取的信息被push到这个数组里
+	userHealthInfo:[]   //通过设备获取的信息被push到这个数组里
 
 
 
@@ -119,6 +119,7 @@ export default class Server extends React.Component {
 		axios.get(BASE_URL)
 			.then(function (response) {
 				// console.log(response);
+				globalData.userHealthInfo = response.data;
 				callback(response)
 			})
 			.catch(function (error) {
@@ -156,6 +157,9 @@ export default class Server extends React.Component {
                 // console.log(error);
 
             });
+    }
+    static retuenData(){
+    	return globalData.userHealthInfo
     }
 
 }
