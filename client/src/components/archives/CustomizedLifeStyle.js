@@ -134,7 +134,7 @@ class CustomizedLifeStyle extends Component{
                 <Form layout="horizontal">
 
                     <div className="cateTitle">体育锻炼</div>
-                    <FormItem  {...FormItemLayoutW} >
+                    <FormItem  {...FormItemLayoutW} hasFeedback>
                         <span>锻炼频率： </span>
                         {getFieldDecorator('trainRate', {
 
@@ -151,7 +151,7 @@ class CustomizedLifeStyle extends Component{
                     </FormItem>
                     <Row gutter={0}>
                         <Col span={8}>
-                            <FormItem label="每次锻炼时间" {...FormItemLayout7} >
+                            <FormItem label="每次锻炼时间" {...FormItemLayout7} hasFeedback>
                                 {getFieldDecorator('exerciseTimeByMin', {
 
                                 })(
@@ -160,7 +160,7 @@ class CustomizedLifeStyle extends Component{
                             </FormItem>
                         </Col>
                         <Col span={8}>
-                            <FormItem label="坚持锻炼时间" {...FormItemLayout} >
+                            <FormItem label="坚持锻炼时间" {...FormItemLayout} hasFeedback>
                                 {getFieldDecorator('exerciseTimeByYear', {
                                     
                                 })(
@@ -169,7 +169,7 @@ class CustomizedLifeStyle extends Component{
                             </FormItem>
                         </Col>
                         <Col span={8}>
-                            <FormItem label="锻炼方式" {...FormItemLayout} >
+                            <FormItem label="锻炼方式" {...FormItemLayout} hasFeedback>
                                 {getFieldDecorator('exerciseWay', {
                                    
                                 })(
@@ -179,7 +179,7 @@ class CustomizedLifeStyle extends Component{
                         </Col>
                     </Row>
                     <div className="cateTitle">饮食习惯</div>
-                    <FormItem   >
+                    <FormItem   hasFeedback>
 
                         {getFieldDecorator('foodHabit', {
 
@@ -198,7 +198,7 @@ class CustomizedLifeStyle extends Component{
                     </FormItem>
                     <div className="cateTitle">吸烟状况</div>
                     <Row gutter={8}>
-                    <Col span={8}>
+                    <Col span={6}>
                         <FormItem   hasFeedback>
 
                             {getFieldDecorator('smokingStatus', {
@@ -214,7 +214,7 @@ class CustomizedLifeStyle extends Component{
                         </FormItem>
                         </Col>
                         <Col span={6}>
-                                <FormItem label="日吸烟量" {...FormItemLayout} >
+                                <FormItem label="日吸烟量" {...FormItemLayout} hasFeedback>
                                     {getFieldDecorator('smokingNumsByDay', {
 
                                     })(
@@ -223,7 +223,7 @@ class CustomizedLifeStyle extends Component{
                                 </FormItem>
                         </Col>
                         <Col span={6}>
-                                <FormItem label="开始吸烟年龄" {...FormItemLayout} >
+                                <FormItem label="开始吸烟年龄" {...FormItemLayout} hasFeedback>
                                     {getFieldDecorator('startSmokingAge', {
 
                                     })(
@@ -231,8 +231,8 @@ class CustomizedLifeStyle extends Component{
                                     )}
                                 </FormItem>
                         </Col>
-                        <Col span={4}>
-                                <FormItem label="戒烟年龄" {...FormItemLayout} >
+                        <Col span={6}>
+                                <FormItem label="戒烟年龄" {...FormItemLayout} hasFeedback>
                                     {getFieldDecorator('stopSmokingAge', {
 
                                     })(
@@ -244,7 +244,7 @@ class CustomizedLifeStyle extends Component{
                     
                     <div className="cateTitle">饮酒情况</div>
 
-                    <FormItem  {...FormItemLayout} >
+                    <FormItem  {...FormItemLayout} hasFeedback>
                         <span>饮酒频率： </span>
                         {getFieldDecorator('drinkingStatus', {
 
@@ -260,7 +260,7 @@ class CustomizedLifeStyle extends Component{
                     
                     <Row gutter={8}>
                         <Col span={6}>
-                                <FormItem label="日饮酒量"  {...FormItemLayout7} >
+                                <FormItem label="日饮酒量"  {...FormItemLayout7} hasFeedback>
                                     {getFieldDecorator('drinkingByDay', {
 
                                     })(
@@ -284,7 +284,7 @@ class CustomizedLifeStyle extends Component{
                                 </FormItem>
                         </Col>
                         <Col span={6}>
-                                <FormItem label="开始饮酒年龄：" {...FormItemLayoutW}  >
+                                <FormItem label="开始饮酒年龄：" {...FormItemLayoutW}  hasFeedback>
                                     {getFieldDecorator('startDrinkingAge', {
 
                                     })(
@@ -293,7 +293,7 @@ class CustomizedLifeStyle extends Component{
                                 </FormItem>
                         </Col>
                         <Col span={6}>
-                                <FormItem   >
+                                <FormItem  hasFeedback >
                                     <span>近一年内是否曾醉酒：</span>
                                     {getFieldDecorator('isDrinkingThisYear', {
 
@@ -323,7 +323,7 @@ class CustomizedLifeStyle extends Component{
                             )}
                         </FormItem>
                     <div className="cateTitle">毒物种类</div>
-                    <FormItem  >
+                    <FormItem  hasFeedback>
                         {getFieldDecorator('poisonType', {
 
                         })(

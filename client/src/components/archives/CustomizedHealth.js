@@ -188,8 +188,8 @@ class CustomizedHealth extends Component{
 
                     <Row gutter={8}>
                         <Col span={6}>
-                            <FormItem  {...FormItemLayout} >
-                                <div>老年人健康状态自我评估*</div>
+                            <FormItem className='oldjk' {...FormItemLayout} hasFeedback>
+                                <div>老年人健康状态自我评估</div>
                                 {getFieldDecorator('agedLiveStatus', {
                                     
                                 })(
@@ -205,8 +205,8 @@ class CustomizedHealth extends Component{
                             </FormItem>
                         </Col>
                         <Col span={6}>
-                            <FormItem  {...FormItemLayout} >
-                                <div>老年人生活自理能力自我评估*</div>
+                            <FormItem  className='oldzl' {...FormItemLayout} hasFeedback>
+                                <div>老年人生活自理能力自我评估</div>
                                 {getFieldDecorator('agedSelfCareStatus', {
                                     
                                 })(
@@ -221,8 +221,8 @@ class CustomizedHealth extends Component{
                             </FormItem>
                         </Col>
                         <Col span={6}>
-                            <FormItem  {...FormItemLayout} >
-                                <div>老年人认知功能*</div>
+                            <FormItem className='oldrz' {...FormItemLayout} hasFeedback>
+                                <div>老年人认知功能</div>
                                 {getFieldDecorator('agedCognitive', {
 
                                 })(
@@ -243,8 +243,8 @@ class CustomizedHealth extends Component{
                             </FormItem>
                         </Col>
                         <Col span={6}>
-                            <FormItem  {...FormItemLayout} >
-                                <div>老年人情感状态*</div>
+                            <FormItem className='oldrz' {...FormItemLayout} hasFeedback>
+                                <div>老年人情感状态</div>
                                 {getFieldDecorator('agedEmotionStatus', {
 
                                 })(

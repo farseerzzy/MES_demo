@@ -6,7 +6,7 @@ import LogoImg from '../../style/img/logo.jpg';
 import Head1Img from '../../style/img/head1.jpg';
 import Head2Img from '../../style/img/head2.png';
 const { Header } = Layout;
-const SubMenu = Menu.SubMenu;
+
 
 export default class HeaderCustom extends Component{
     constructor(props){
@@ -43,7 +43,7 @@ export default class HeaderCustom extends Component{
                     <Input placeholder ="请请输入要搜索的内容..." className="head_input" />
                     </Menu.Item>
                     <Menu.Item>
-                     <Button type="primary" icon="search" >搜索</Button>
+                     <Button type="primary" icon="search" disabled>搜索</Button>
                     </Menu.Item>
                     <Menu.Item>
                         <div>

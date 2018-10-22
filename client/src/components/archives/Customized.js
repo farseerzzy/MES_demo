@@ -18,7 +18,7 @@ class Customized extends Component{
     constructor(props){
         super(props);
         this.state = {
-            value: 1,
+            value: 2,
             rowData:this.props.rowData
         }
 
@@ -113,8 +113,9 @@ class Customized extends Component{
             <div className="CustomizedForm">
                     <div className="radioGroup">
                         <RadioGroup onChange={this.onChange} value={value} buttonStyle="solid" size="large">
-                            <Radio.Button style={radioStyle} value={1}>症状</Radio.Button>
                             <Radio.Button style={radioStyle} value={2}>一般状况</Radio.Button>
+                            <Radio.Button style={radioStyle} value={1}>症状</Radio.Button>
+                            
                             <Radio.Button style={radioStyle} value={3}>生活方式</Radio.Button>
 
                         </RadioGroup>
