@@ -150,6 +150,7 @@ export default class Server extends React.Component {
                 // console.log(response);
                 callback(response)
                 alert('更新成功')
+                window.location.reload();
             })
             .catch(function (error) {
                 // console.log(error);
