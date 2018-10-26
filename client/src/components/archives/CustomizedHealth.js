@@ -104,7 +104,7 @@ class CustomizedHealth extends Component{
 
                 <Form layout="horizontal">
 
-                    <Row gutter={8}>
+                    <Row gutter={0}>
                         <Col span={8}>
                             <FormItem label="体温" {...FormItemLayout} hasFeedback>
                                 {getFieldDecorator('Temp', {
@@ -133,7 +133,7 @@ class CustomizedHealth extends Component{
                             </FormItem>
                         </Col>
                     </Row>
-                    <Row gutter={8}>
+                    <Row gutter={0}>
                         <Col span={8}>
                             <FormItem label="血压" {...FormItemLayout} hasFeedback>
                                 {getFieldDecorator('NibpAver', {
@@ -162,7 +162,7 @@ class CustomizedHealth extends Component{
                             </FormItem>
                         </Col>
                     </Row>
-                    <Row gutter={8}>
+                    <Row gutter={0}>
                         <Col span={8}>
                             <FormItem label="腰围" {...FormItemLayout} hasFeedback>
                                 {getFieldDecorator('waistline', {
@@ -186,7 +186,7 @@ class CustomizedHealth extends Component{
 
 
 
-                    <Row gutter={8}>
+                    <Row gutter={0}>
                         <Col span={6}>
                             <FormItem className='oldjk' {...FormItemLayout} hasFeedback>
                                 <div>老年人健康状态自我评估</div>

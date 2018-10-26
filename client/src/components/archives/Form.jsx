@@ -292,7 +292,7 @@ export default class UForm extends Component{
         return(
             <div>
                 <BreadcrumbCustom paths={['首页','健康档案']}/>
-                <div className='formBody'>
+                <div className='formBody' style={{'display':this.state.visible?'none':'block'}}>
                     <Row gutter={16}>
                         <Col className="gutter-row" sm={8}>
                             <Search
@@ -307,13 +307,13 @@ export default class UForm extends Component{
 
                     </Row>
                     <Row gutter={16}>
-
+                         <Col sm={8}>
                         <div className='btnOpera'>
 
 
                             <Button type="primary" onClick={this.btnClear_Click} style={{background:'#f8f8f8', color: '#108ee9'}}>重置</Button>
                         </div>
-
+                          </Col>       
                     </Row>
                     <FormTable
                         userList={userList}
@@ -321,15 +321,13 @@ export default class UForm extends Component{
                         onDelete={this.onDelete}
                         editClick={this.editClick}
                         loading={loading}
-                    />
-                    {   this.state.visible
+                    />                   
+                    
+                </div>
+                {   this.state.visible
                         ? <CollectionCreateForm ref={this.saveFormRef} handleCancel = {this.handleCancel} updateRoot = {this.getData} rowData = {this.state.userListSelected}  visible={visible} onCancel={this.handleCancel} onCreate={this.handleUpdate} title="修改信息" okText="更新"/>
                         : null
                     }
-
-                    
-                    
-                </div>
             </div>
         )
     }

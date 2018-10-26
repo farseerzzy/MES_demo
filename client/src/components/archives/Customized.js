@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Form, Row,Col,Input, Radio, InputNumber, Cascader, Select, AutoComplete } from 'antd';
+import { Modal,Button, Form, Row,Col,Input, Radio, InputNumber, Cascader, Select, AutoComplete } from 'antd';
 import axios from 'axios';
 import address from './request/address';
 import CollectionCreateForm1 from './CustomizedForm';
@@ -101,31 +101,32 @@ class Customized extends Component{
 
         };
         return (
-            <Modal
-                visible={visible}
-                title={title}
-                okText={okText}
-                cancelText={'返回'}
-                onCancel={onCancel}
-                onOk={this.onOkProcess}
-                width = {1200}
-            >
-            <div className="CustomizedForm">
-                    <div className="radioGroup">
-                        <RadioGroup onChange={this.onChange} value={value} buttonStyle="solid" size="large">
-                            <Radio.Button style={radioStyle} value={2}>一般状况</Radio.Button>
-                            <Radio.Button style={radioStyle} value={1}>症状</Radio.Button>
-                            
-                            <Radio.Button style={radioStyle} value={3}>生活方式</Radio.Button>
 
-                        </RadioGroup>
-                    </div>
-                    <div className="showEchart">
-                        {this.showTab(value,form)}
-                    </div>
+            <div className="CustomizedForm">
+                <Row gutter={0}>
+                    <Col sm={18}>
+                        <div className="radioGroup">
+                            <RadioGroup onChange={this.onChange} value={value} buttonStyle="solid" size="large">
+                                <Radio.Button style={radioStyle} value={2}>一般状况</Radio.Button>
+                                <Radio.Button style={radioStyle} value={1}>症状</Radio.Button>
+                                
+                                <Radio.Button style={radioStyle} value={3}>生活方式</Radio.Button>
+
+                            </RadioGroup>
+                        </div>
+                    </Col>
+                    <Col sm ={6}>
+                        <Button className = 'CancleButton' onClick={onCancel}>返回</Button>
+                        <Button onClick={this.onOkProcess} type="primary">提交</Button>
+                    </Col>
+                </Row>
+                <div className="showEchart">
+                    {this.showTab(value,form)}
                 </div>
 
-            </Modal>
+                
+            </div>
+
         );
     }
 }

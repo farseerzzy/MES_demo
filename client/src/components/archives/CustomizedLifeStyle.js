@@ -184,7 +184,7 @@ class CustomizedLifeStyle extends Component{
                         {getFieldDecorator('foodHabit', {
 
                         })(
-                        <Checkbox.Group style={{ width: '100%' }}>
+                        <Checkbox.Group style={{ width: '90%' }}>
                             <Row>
                                 <Col span={4}><Checkbox value="荤素均衡">荤素均衡</Checkbox></Col>
                                 <Col span={4}><Checkbox value="荤食为主">荤食为主</Checkbox></Col>
@@ -197,7 +197,7 @@ class CustomizedLifeStyle extends Component{
                         )}
                     </FormItem>
                     <div className="cateTitle">吸烟状况</div>
-                    <Row gutter={8}>
+                    <Row gutter={0}>
                     <Col span={6}>
                         <FormItem   hasFeedback>
 
@@ -258,7 +258,7 @@ class CustomizedLifeStyle extends Component{
                         )}
                     </FormItem>
                     
-                    <Row gutter={8}>
+                    <Row gutter={0}>
                         <Col span={6}>
                                 <FormItem label="日饮酒量"  {...FormItemLayout7} hasFeedback>
                                     {getFieldDecorator('drinkingByDay', {
@@ -327,7 +327,7 @@ class CustomizedLifeStyle extends Component{
                         {getFieldDecorator('poisonType', {
 
                         })(
-                            <Checkbox.Group style={{ width: '100%' }}>
+                            <Checkbox.Group style={{ width: '92%' }}>
                                 <Row>
                                     <Col span={4}><Checkbox value="粉尘">粉尘</Checkbox></Col>
                                     <Col span={4}><Checkbox value="放射物质">放射物质</Checkbox></Col>
